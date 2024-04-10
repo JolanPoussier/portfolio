@@ -1,0 +1,53 @@
+@font-face {
+  font-family: 'Gotham-Medium';
+  src:
+    local('TacOne'),
+    url(../theme/assets/Gotham-Medium.otf) format('opentype');
+}
+
+@font-face {
+  font-family: 'Gotham-Bold';
+  src:
+    local('Gotham'),
+    url(../theme/assets/Gotham-Bold.otf) format('opentype');
+}
+
+@font-face {
+  font-family: 'Gotham-Light';
+  src:
+    local('Gotham'),
+    url(../theme/assets/Gotham-Light.otf) format('opentype');
+}
+
+@font-face {
+  font-family: 'Gotham-Book';
+  src:
+    local('Gotham'),
+    url(../theme/assets/Gotham-Book.otf) format('opentype');
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  background: rgb(11, 13, 32);
+  background: linear-gradient(
+    65deg,
+    rgba(11, 13, 32, 1) 70%,
+    rgba(22, 26, 64, 1) 100%
+  );
+}
+
+body {
+  max-width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
