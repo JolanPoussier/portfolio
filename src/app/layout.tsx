@@ -18,10 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <StyledComponentsRegistry>
-          <Theme>
-            <Navbar />
-            {children}
-          </Theme>
+          <Theme>{children}</Theme>
         </StyledComponentsRegistry>
       </body>
     </html>

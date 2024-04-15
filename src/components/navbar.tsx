@@ -2,24 +2,26 @@
 
 import Link from 'next/link';
 import styled from 'styled-components';
-import { usePathname } from 'next/navigation';
 
 const Container = styled.header`
-  height: 50px;
+  position: fixed;
+  top: 24px;
+  left: calc((100vw / 2) - 250px);
+  min-height: 50px;
   width: 500px;
   margin: auto;
-  margin-top: 24px;
-  padding: 0 24px;
+  padding: 0 12px;
   display: flex;
   align-items: center;
   backdrop-filter: blur(15px);
   background-color: rgba(182, 182, 182, 0.2);
   justify-content: space-evenly;
-  border-radius: 24px;
+  border-radius: 30px;
   font-family: ${(props) => props.theme.fonts.light};
+  font-size: 18px;
 `;
 
-const NavLink = styled(Link)<{ focus?: boolean }>`
+const NavLink = styled(Link)<{ focus?: string }>`
   height: 100%;
   width: 100px;
   display: flex;
@@ -32,20 +34,28 @@ const NavLink = styled(Link)<{ focus?: boolean }>`
   }
 `;
 
-export default function Navbar() {
-  const pathname = usePathname();
+export default function Navbar({ location }: { location: string }) {
   return (
     <Container>
-      <NavLink focus={pathname == '/' ? true : false} href={'/'}>
+      <NavLink
+        focus={location == '' || location == 'home' ? 'true' : ''}
+        href={'/#home'}
+        scroll={true}
+      >
         Home
       </NavLink>
       <NavLink
-        focus={pathname == '/projects' ? true : false}
-        href={'/projects'}
+        focus={location == 'projects' ? 'true' : ''}
+        href={'/#projects'}
+        scroll={true}
       >
         Projects
       </NavLink>
-      <NavLink focus={pathname == '/about' ? true : false} href={'/about'}>
+      <NavLink
+        focus={location == 'about' ? 'true' : ''}
+        href={'/#about'}
+        scroll={true}
+      >
         About me
       </NavLink>
     </Container>
