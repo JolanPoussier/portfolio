@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { Github, Linkedin } from 'lucide-react';
-import Link from 'next/link';
-import styled from 'styled-components';
+import { Github, Linkedin } from "lucide-react";
+import Link from "next/link";
+import styled from "styled-components";
 
 const Container = styled.header`
   position: fixed;
@@ -23,7 +23,7 @@ const Container = styled.header`
 `;
 
 const ContactSection = styled.div`
-  position: fixed;
+  position: absolute;
   top: 35px;
   right: 24px;
 `;
@@ -38,7 +38,7 @@ const NavLink = styled(Link)<{ focus?: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${(props) => (props.focus ? 'white' : 'grey')};
+  color: ${(props) => (props.focus ? "white" : "grey")};
   transition: all 0.2s ease-in-out;
   &:hover {
     color: white;
@@ -50,34 +50,34 @@ export default function Navbar({ location }: { location: string }) {
     <>
       <Container>
         <NavLink
-          focus={location == '' || location == 'home' ? 'true' : ''}
-          href={'/#home'}
+          focus={location == "" || location == "home" ? "true" : ""}
+          href={"/#home"}
           scroll={true}
         >
           Home
         </NavLink>
         <NavLink
-          focus={location == 'projects' ? 'true' : ''}
-          href={'/#projects'}
+          focus={location == "projects" ? "true" : ""}
+          href={"/#projects"}
           scroll={true}
         >
           Projects
         </NavLink>
         <NavLink
-          focus={location == 'about' ? 'true' : ''}
-          href={'/#about'}
+          focus={location == "about" ? "true" : ""}
+          href={"/#about"}
           scroll={true}
         >
           About me
         </NavLink>
       </Container>
       <ContactSection>
-        <ContactLink target="_blank" href={'https://github.com/JolanPoussier'}>
+        <ContactLink target="_blank" href={"https://github.com/JolanPoussier"}>
           <Github strokeWidth={1.2} />
         </ContactLink>
         <ContactLink
           target="_blank"
-          href={'https://www.linkedin.com/in/jolan-poussier/'}
+          href={"https://www.linkedin.com/in/jolan-poussier/"}
         >
           <Linkedin strokeWidth={1.2} />
         </ContactLink>

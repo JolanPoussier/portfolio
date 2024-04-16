@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import Home from '@/components/home';
-import Navbar from '@/components/navbar';
-import { useIsVisible } from '@/hooks/useOnScreen';
-import { findNavbarLocation } from '@/utils/findNavbarLocation';
-import { useRef } from 'react';
-import styled from 'styled-components';
+import Home from "@/components/home";
+import Navbar from "@/components/navbar";
+import { useIsVisible } from "@/hooks/useOnScreen";
+import { findNavbarLocation } from "@/utils/findNavbarLocation";
+import { useRef } from "react";
+import styled from "styled-components";
 
 const Main = styled.main`
   padding: 0 2em;
@@ -24,8 +24,8 @@ const Button = styled.button<{ $primary?: boolean }>`
   /* Adapt the colors based on primary prop */
   display: block;
   height: 100vh;
-  background: ${(props) => (props.$primary ? '#BF4F74' : 'white')};
-  color: ${(props) => (props.$primary ? 'white' : '#BF4F74')};
+  background: ${(props) => (props.$primary ? "#BF4F74" : "white")};
+  color: ${(props) => (props.$primary ? "white" : "#BF4F74")};
   font-family: ${(props) => props.theme.fonts.light};
   font-weight: 200;
   font-size: 1em;

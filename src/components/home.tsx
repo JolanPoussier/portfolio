@@ -1,7 +1,7 @@
-import { ChevronDown } from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
-import styled from 'styled-components';
+import { ChevronDown } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import styled from "styled-components";
 
 const Main = styled.div`
   height: 100%;
@@ -47,7 +47,7 @@ const BottomLink = styled(Link)`
   }
 `;
 
-export default function Home() {
+export default function Hom() {
   return (
     <Main>
       <Text>
@@ -60,11 +60,11 @@ export default function Home() {
         <Image
           width={408}
           height={306}
-          src={'/assets/profilPic.png'}
+          src={"/assets/profilPic.png"}
           alt="Handsom young man with long hair, a very charismatic face and an enigmatic smile"
         />
       </Picture>
-      <BottomLink href={'/#projects'}>
+      <BottomLink href={"/#projects"}>
         <ChevronDown strokeWidth={1} size={48} />
       </BottomLink>
     </Main>
