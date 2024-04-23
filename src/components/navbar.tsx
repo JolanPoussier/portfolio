@@ -1,11 +1,19 @@
 "use client";
 
 import { Github, Linkedin } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
 
+const Logo = styled.div`
+  position: absolute;
+  top: 0px;
+  left: 0px;
+`;
+
 const Container = styled.header`
   position: fixed;
+  z-index: 2;
   top: 24px;
   left: calc((100vw / 2) - 250px);
   min-height: 50px;
@@ -30,6 +38,10 @@ const ContactSection = styled.div`
 
 const ContactLink = styled(Link)`
   margin-left: 24px;
+  color: grey;
+  &:hover {
+    color: white;
+  }
 `;
 
 const NavLink = styled(Link)<{ focus?: string }>`
@@ -48,6 +60,14 @@ const NavLink = styled(Link)<{ focus?: string }>`
 export default function Navbar({ location }: { location: string }) {
   return (
     <>
+      <Logo>
+        <Image
+          src={"/assets/logo.png"}
+          alt="Logo with inital JP"
+          width={90}
+          height={90}
+        />
+      </Logo>
       <Container>
         <NavLink
           focus={location == "" || location == "home" ? "true" : ""}
