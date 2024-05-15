@@ -3,19 +3,22 @@ interface Project {
   title: string;
   text: string;
   link: string;
+  github: string;
 }
 
 export const projects = <Project[]>[
   {
     image: "/assets/projectsPic/outspeed.png",
     title: "Outspeed",
-    text: "This website references a wide range of possible plays in Rocket League, a multiplayer football game. It was created using NextJS for the frontend and the backend and host on Vercel.",
+    text: "Outspeed est une bibliothèque des différentes techniques possibles dans Rocket League, un jeu multijoueur de football.",
     link: "https://www.outspeed.fr/",
+    github: "https://github.com/JolanPoussier/ProjectRL",
   },
   {
     image: "/assets/projectsPic/aicooker.png",
     title: "AICooker",
-    text: "With AiCooker you can generate kitchen recipes with products of your choice thanks to the OpenAI API. This project was created using NextJS, tailwind and the OpenAI API.",
+    text: "AiCooker permet de générer des recettes de cuisine avec les produits de votre choix. C'est une application vide-frigo réalisée avec l'API OpenAI(chatGPT) qui compose elle-même les recettes proposées.",
     link: "https://ia-cooker-2cd92e0c1e3b.herokuapp.com/",
+    github: "https://github.com/JolanPoussier/FoodHelperAI",
   },
 ];

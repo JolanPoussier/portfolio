@@ -20,6 +20,9 @@ const Section = styled.div`
   font-size: 1em;
   padding: 0.25em 1em;
   margin-top: 1em;
+  &#home {
+    margin-top: 0;
+  }
 `;
 
 export default function App() {

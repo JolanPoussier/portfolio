@@ -17,8 +17,18 @@ const Main = styled.div`
 const CenterDiv = styled.div`
   position: relative;
   z-index: 1;
-  margin: auto;
+  width: 72%;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5em 5em;
+`;
+
+const Computer = styled.div`
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 5em 5em;
@@ -69,8 +79,9 @@ const PictureContainer = styled.div`
 `;
 
 const Picture = styled(Image)`
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
+  margin-top: 1em;
 `;
 const SVG = styled(Picture)`
   border: 5px solid white;
@@ -94,32 +105,31 @@ const BottomLink = styled(Link)`
 export default function Home() {
   return (
     <Main>
-      <CenterDiv>
-        <BordersHome />
-        <Text>
-          <Name>
-            Hi <br /> I&apos;m Jolan,
-          </Name>
-          <GradientComp />
-          {/* <SVG
-            src={"/assets/A Web Developer.svg"}
-            alt="Web Developer"
-            height={4000}
-            width={3300}
-          /> */}
-          {/* <Job>
-            A Web <br /> Developer
-          </Job> */}
-        </Text>
-        <PictureContainer>
+      <Computer>
+        <CenterDiv>
+          <BordersHome />
+          <Text>
+            <Name>
+              Jolan <br /> Poussier
+            </Name>
+            <GradientComp />
+          </Text>
+          {/* <PictureContainer>
           <Picture
             width={330}
             height={400}
             src={"/assets/picHome.jpg"}
             alt="Handsom young man with long hair, a very charismatic face and an enigmatic smile"
           />
-        </PictureContainer>
-      </CenterDiv>
+        </PictureContainer> */}
+        </CenterDiv>
+        <Picture
+          width={330}
+          height={400}
+          src={"/assets/keyboard.png"}
+          alt="Handsom young man with long hair, a very charismatic face and an enigmatic smile"
+        />
+      </Computer>
       <BottomLink href={"/#projects"}>
         <ChevronDown strokeWidth={1} size={48} />
       </BottomLink>

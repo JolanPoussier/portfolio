@@ -74,21 +74,21 @@ export default function Navbar({ location }: { location: string }) {
           href={"/#home"}
           scroll={true}
         >
-          Home
+          Accueil
         </NavLink>
         <NavLink
           focus={location == "projects" ? "true" : ""}
           href={"/#projects"}
           scroll={true}
         >
-          Projects
+          Projets
         </NavLink>
         <NavLink
           focus={location == "about" ? "true" : ""}
           href={"/#about"}
           scroll={true}
         >
-          About me
+          À propos
         </NavLink>
       </Container>
       <ContactSection>

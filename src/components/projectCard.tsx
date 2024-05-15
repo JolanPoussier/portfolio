@@ -7,12 +7,13 @@ interface Props {
   title: string;
   text: string;
   link: string;
+  github: string;
 }
 
 const Card = styled.div`
   width: 100%;
   max-width: 1000px;
-  height: 30%;
+  height: 250px;
   margin: auto;
   display: flex;
   position: relative;
@@ -66,6 +67,24 @@ const LinkButton = styled(Link)`
   }
 `;
 
+const Github = styled(Link)`
+  position: absolute;
+  z-index: 2;
+  bottom: 12px;
+  right: 12px;
+  padding: 0.7em;
+  background: black;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    background: white;
+    color: black;
+  }
+`;
+
 const Presentation = styled.div`
   position: absolute;
   top: 0;
@@ -73,20 +92,55 @@ const Presentation = styled.div`
   z-index: -1;
   width: 72%;
   height: 100%;
+  padding: 2em;
   border: 1px white solid;
   border-radius: 24px;
+  display: flex;
+  flex-direction: column;
 `;
 
-export default function ProjectCard({ image, title, text, link }: Props) {
+const Title = styled.h1`
+  font-size: 2.2em;
+  font-family: ${(props) => props.theme.fonts.bold};
+  margin-bottom: 0.5em;
+`;
+
+const Text = styled.p`
+  font-size: 1em;
+`;
+
+const GithubIcon = styled(Image)`
+  margin-left: 1em;
+`;
+
+export default function ProjectCard({
+  image,
+  title,
+  text,
+  link,
+  github,
+}: Props) {
   return (
     <Card>
       <ImageDiv>
         <ProjectPic src={image} alt={title} width={200} height={200} />
         <LinkButton href={link} className="button" target="_blank">
-          Visit website
+          Visiter le site
         </LinkButton>
       </ImageDiv>
-      <Presentation></Presentation>
+      <Presentation>
+        <Title>{title}</Title>
+        <Text>{text}</Text>
+      </Presentation>
+      <Github href={github}>
+        Consulter le repo
+        <GithubIcon
+          src={"/assets/github.png"}
+          alt="github logo"
+          width={20}
+          height={20}
+        />
+      </Github>
     </Card>
   );
 }
