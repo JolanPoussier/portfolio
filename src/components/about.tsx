@@ -21,15 +21,19 @@ const SkillsList = [
 const Main = styled.section`
   width: 80%;
   margin: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 `;
 
 const Title = styled.h1`
   font-family: ${(props) => props.theme.fonts.bold};
   font-size: 3em;
-  width: 1200px;
+  max-width: 1200px;
   margin: auto;
-  margin-top: 1em;
-  margin-bottom: 1em;
+  margin-top: 3em;
+  margin-bottom: 2em;
+  text-align: center;
 `;
 
 const SkillsTitle = styled.h2`
@@ -70,6 +74,10 @@ const Content = styled.div`
   width: 60%;
   display: flex;
   flex-direction: column;
+  border: 1px solid white;
+  border-radius: 12px;
+  padding: 1em;
+  box-shadow: 0 0 3px white;
 `;
 
 const Skill = styled.div`
@@ -80,18 +88,20 @@ const Skill = styled.div`
 `;
 
 const CV = styled(Link)`
+  display: inline-block;
+  margin: auto;
   margin-top: 2em;
   align-self: center;
-  font-family: ${(props) => props.theme.fonts.medium};
+  font-family: ${(props) => props.theme.fonts.bold};
   font-size: 1.2em;
-  color: white;
-  padding: 0.5em;
-  border-radius: 6px;
+  color: black;
+  padding: 0.7em;
+  border-radius: 1000px;
   border: 1px solid white;
-  background: none;
+  background: white;
   &:hover {
-    color: black;
-    background: white;
+    color: white;
+    background: none;
     cursor: pointer;
     transition: all 0.2s linear;
   }
@@ -106,11 +116,21 @@ export default function About() {
           <Me src={"/assets/picHome.jpg"} alt="me" width={500} height={500} />
         </Picture>
         <Content>
-          Je m&apos;appelle Jolan Poussier. Passionné par le domaine du web,
-          j&apos;ai obtenu un titre pro bac+2 en développement web et web mobile
-          après une reconversion professionnelle. Je continue ma formation en
-          autodidacte en étudiant Next.JS avec lequel j&apos;ai développé
-          plusieurs projets personnels.
+          Je m&apos;appelle Jolan Poussier. Passionné par le domaine du web et
+          motivé pour gagner en compétence, j&apos;ai obtenu un titre pro bac+2
+          en développement web et web mobile après une reconversion
+          professionnelle. Je continue ma formation en autodidacte en étudiant
+          entre autre Next.JS avec lequel j&apos;ai développé plusieurs projets
+          personnels que vous pouvez découvrir plus bas.
+          <br />
+          <br />
+          Ayant pour vocation de devenir développeur fullstack, je suis ouvert
+          aux différentes opportunités dans le domaine du développement et à
+          l&apos;apprentissage de nouveaux langages. Fort d&apos;une expérience
+          de trois ans dans le commerce en amont, je suis également très à
+          l&apos;aise pour travailler en équipe et communiquer, en français
+          comme en anglais.
+          <br />
           <br />
           Je suis actuellement à la recherche d&apos;une alternance pour
           compléter ma formation et obtenir un bachelor.
@@ -120,16 +140,16 @@ export default function About() {
               <Skill key={skill}>{skill}</Skill>
             ))}
           </Skills>
-          <CV
-            href="/CVJolanPoussier.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            download
-          >
-            Télécharge mon CV
-          </CV>
         </Content>
       </Container>
+      <CV
+        href="/CVJolanPoussier.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        download
+      >
+        Télécharger mon CV
+      </CV>
     </Main>
   );
 }

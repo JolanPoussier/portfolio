@@ -10,11 +10,11 @@ const ProjectGrid = styled.div`
 
 const Title = styled.h1`
   font-family: ${(props) => props.theme.fonts.bold};
+  text-align: center;
   font-size: 3em;
-  width: 1000px;
   margin: auto;
-  margin-top: 1em;
-  margin-bottom: 1em;
+  margin-top: 3em;
+  margin-bottom: 2em;
 `;
 
 export default function Projects() {

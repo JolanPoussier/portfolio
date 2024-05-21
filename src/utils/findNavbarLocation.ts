@@ -1,12 +1,18 @@
 export const findNavbarLocation = (
   homeVisible: boolean,
-  projectsVisible: boolean
+  projectsVisible: boolean,
+  aboutVisible: boolean,
+  contactVisible: boolean
 ) => {
   if (homeVisible) {
-    return '';
+    return "";
+  } else if (aboutVisible) {
+    return "about";
   } else if (projectsVisible) {
-    return 'projects';
+    return "projects";
+  } else if (contactVisible) {
+    return "contact";
   } else {
-    return 'about';
+    return "";
   }
 };

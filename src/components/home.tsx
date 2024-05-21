@@ -7,7 +7,7 @@ import { Title } from "./title";
 import Files from "./files";
 
 const Main = styled.div`
-  height: 100%;
+  height: 100vh;
   width: 95%;
   margin: auto;
   display: flex;

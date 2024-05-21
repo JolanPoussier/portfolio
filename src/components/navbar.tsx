@@ -15,9 +15,9 @@ const Container = styled.header`
   position: fixed;
   z-index: 2;
   top: 24px;
-  left: calc((100vw / 2) - 250px);
+  left: calc((100vw / 2) - 325px);
   min-height: 50px;
-  width: 500px;
+  width: 650px;
   margin: auto;
   padding: 0 12px;
   display: flex;
@@ -34,6 +34,7 @@ const ContactSection = styled.div`
   position: absolute;
   top: 35px;
   right: 24px;
+  z-index: 50;
 `;
 
 const ContactLink = styled(Link)`
@@ -90,6 +91,13 @@ export default function Navbar({ location }: { location: string }) {
           scroll={true}
         >
           Projets
+        </NavLink>
+        <NavLink
+          focus={location == "contact" ? "true" : ""}
+          href={"/#contact"}
+          scroll={true}
+        >
+          Contact
         </NavLink>
       </Container>
       <ContactSection>
