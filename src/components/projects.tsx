@@ -3,13 +3,14 @@ import ProjectCard from "./projectCard";
 import styled from "styled-components";
 
 const ProjectGrid = styled.div`
-  width: 100%;
+  width: 80%;
+  margin: auto;
   height: 100vh;
 `;
 
 const Title = styled.h1`
   font-family: ${(props) => props.theme.fonts.bold};
-  font-size: 4em;
+  font-size: 3em;
   width: 1000px;
   margin: auto;
   margin-top: 1em;

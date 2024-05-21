@@ -39,6 +39,7 @@ const ContactSection = styled.div`
 const ContactLink = styled(Link)`
   margin-left: 24px;
   color: grey;
+  z-index: 5;
   &:hover {
     color: white;
   }
@@ -77,18 +78,18 @@ export default function Navbar({ location }: { location: string }) {
           Accueil
         </NavLink>
         <NavLink
-          focus={location == "projects" ? "true" : ""}
-          href={"/#projects"}
-          scroll={true}
-        >
-          Projets
-        </NavLink>
-        <NavLink
           focus={location == "about" ? "true" : ""}
           href={"/#about"}
           scroll={true}
         >
           À propos
+        </NavLink>
+        <NavLink
+          focus={location == "projects" ? "true" : ""}
+          href={"/#projects"}
+          scroll={true}
+        >
+          Projets
         </NavLink>
       </Container>
       <ContactSection>

@@ -1,5 +1,6 @@
 "use client";
 
+import About from "@/components/about";
 import Home from "@/components/home";
 import Navbar from "@/components/navbar";
 import Projects from "@/components/projects";
@@ -39,10 +40,12 @@ export default function App() {
         <Section ref={home} id="home">
           <Home />
         </Section>
+        <Section ref={about} id="about">
+          <About />
+        </Section>
         <Section ref={projects} id="projects">
           <Projects />
         </Section>
-        <Section ref={about} id="about"></Section>
       </Main>
     </>
   );
