@@ -113,7 +113,7 @@ export default function About() {
       <Title>A Propos de moi</Title>
       <Container>
         <Picture>
-          <Me src={"/assets/picHome.jpg"} alt="me" width={500} height={500} />
+          <Me src={"/assets/photoSwag.png"} alt="me" width={500} height={500} />
         </Picture>
         <Content>
           Je m&apos;appelle Jolan Poussier. Passionné par le domaine du web et

@@ -42,6 +42,7 @@ const ContactLink = styled(Link)`
   color: grey;
   z-index: 5;
   &:hover {
+    transition: all 0.2s linear;
     color: white;
   }
 `;

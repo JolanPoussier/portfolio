@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const charVariants = {
   hidden: { opacity: 0 },
@@ -17,7 +18,7 @@ const File = styled(Image)`
   position: relative;
 `;
 
-const Block = styled(motion.div)`
+const Block = styled(motion(Link))`
   display: flex;
   width: 44px;
   height: 44px;
@@ -56,7 +57,7 @@ export default function Files() {
   return (
     <Container>
       <Block
-        as={motion.div}
+        href={"/#projects"}
         initial="hidden"
         animate="reveal"
         transition={{ duration: 0.2, delay: 4.5 }}
@@ -66,7 +67,7 @@ export default function Files() {
         <span>Dev&apos;</span>
       </Block>
       <Block
-        as={motion.div}
+        href={"/#about"}
         initial="hidden"
         animate="reveal"
         transition={{ duration: 0.2, delay: 4.7 }}
@@ -76,7 +77,7 @@ export default function Files() {
         <span>Perso</span>
       </Block>
       <Block
-        as={motion.div}
+        href={"/#contact"}
         initial="hidden"
         animate="reveal"
         transition={{ duration: 0.2, delay: 4.9 }}
