@@ -27,17 +27,6 @@ const Block = styled(motion(Link))`
   align-items: center;
   position: relative;
   box-shadow: 0 0 0 white;
-  ::after {
-    content: "";
-    position: absolute;
-    width: 30px;
-    height: 20px;
-    top: 5px;
-    left: 5px;
-    box-shadow: 0 0 0 white;
-    z-index: -1;
-    transition: box-shadow 0.3s ease-out;
-  }
   &:hover {
     cursor: pointer;
     & ${File} {
@@ -45,9 +34,6 @@ const Block = styled(motion(Link))`
       content: url("/assets/openfile.png");
       width: 44px;
       height: 44px;
-    }
-    ::after {
-      box-shadow: 0 0 30px white;
     }
   }
   font-size: 0.8em;

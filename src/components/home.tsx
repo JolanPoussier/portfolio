@@ -9,6 +9,7 @@ import Files from "./files";
 const Main = styled.div`
   height: 100vh;
   width: 95%;
+  max-width: 1300px;
   margin: auto;
   display: flex;
   align-items: center;
@@ -58,7 +59,12 @@ const Coffee = styled(Image)`
   position: absolute;
   top: 50%;
   left: 0px;
-  bottom: 48px;
+`;
+
+const Mouse = styled(Coffee)`
+  top: 58%;
+  right: 20px;
+  left: auto;
 `;
 
 export default function Home() {
@@ -77,6 +83,7 @@ export default function Home() {
           alt="Keyboard"
         />
       </Computer>
+      <Mouse width={200} height={110} src={"/assets/mouse.png"} alt="mouse" />
       <BottomLink href={"/#about"}>
         <ChevronDown strokeWidth={1} size={48} />
       </BottomLink>
