@@ -21,4 +21,11 @@ export const projects = <Project[]>[
     link: "https://ia-cooker-2cd92e0c1e3b.herokuapp.com/",
     github: "https://github.com/JolanPoussier/FoodHelperAI",
   },
+  {
+    image: "/assets/projectsPic/portfolio.png",
+    title: "Portfolio",
+    text: "Ce portfolio afin de mettre en avant les projets que j'ai pu réaliser ainsi que mes compétences techniques.",
+    link: "#",
+    github: "https://github.com/JolanPoussier/FoodHelperAI",
+  },
 ];

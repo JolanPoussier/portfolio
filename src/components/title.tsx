@@ -1,8 +1,17 @@
 "use client";
 
 import splitStringUsingRegex from "@/utils/splitStringUsingRegexs";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { motion } from "framer-motion";
+
+const TitleMotion = keyframes`
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+`;
 
 const charVariants = {
   hidden: { opacity: 0 },
@@ -18,6 +27,24 @@ const Name = styled.h1`
 const Job = styled(Name)`
   font-size: 3em;
   font-family: ${(props) => props.theme.fonts.medium};
+  text-align: center;
+
+  background: linear-gradient(
+    to right,
+    #87a9ed 20%,
+    #b6faf7 40%,
+    #b6faf7 60%,
+    #87a9ed 80%
+  );
+  background-size: 250% auto;
+
+  color: #000;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: ${TitleMotion} 5s ease-in-out infinite alternate;
 `;
 
 const Intro = styled(Name)`

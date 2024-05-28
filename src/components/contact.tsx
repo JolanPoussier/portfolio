@@ -20,6 +20,10 @@ const Title = styled.h1`
   margin-top: 3em;
   margin-bottom: 2em;
   text-align: center;
+  line-height: normal;
+  background: linear-gradient(to right, #87a9ed, #b6faf7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 `;
 
 const Container = styled.form`

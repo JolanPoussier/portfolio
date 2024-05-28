@@ -8,19 +8,21 @@ interface Props {
   text: string;
   link: string;
   github: string;
+  odd: boolean;
 }
 
-const Card = styled.div`
+const Card = styled.div<{ $display?: boolean }>`
   width: 100%;
   max-width: 1000px;
   height: 250px;
   margin: auto;
   display: flex;
+  justify-content: ${(props) => (props.$display ? `flex-end` : "")};
   position: relative;
   margin-bottom: 4em;
 `;
 
-const ImageDiv = styled.div`
+const ImageDiv = styled(Link)<{ $display?: boolean }>`
   position: relative;
   width: 30%;
   height: 90%;
@@ -31,8 +33,10 @@ const ImageDiv = styled.div`
   &:hover {
     width: 32%;
     height: 95%;
+    cursor: pointer;
     .button {
-      left: -6px;
+      right: ${(props) => (props.$display ? "" : "0px")};
+      left: ${(props) => (props.$display ? "0px" : "")};
     }
   }
 `;
@@ -44,34 +48,34 @@ const ProjectPic = styled(Image)`
   object-fit: cover;
 `;
 
-const LinkButton = styled(Link)`
+const LinkInfo = styled.div<{ $display?: boolean }>`
   position: absolute;
   z-index: 3;
-  bottom: 12px;
-  left: -200px;
-  height: 50px;
-  width: 200px;
+  bottom: 0;
+  left: ${(props) => (props.$display ? "-100%" : "")};
+  right: ${(props) => (props.$display ? "" : "-100%")};
+  height: 100%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: grey;
+  opacity: 0.85;
   backdrop-filter: blur(15px);
-  background-color: rgba(182, 182, 182, 0.2);
+  background-color: black;
   border-radius: 12px;
   transition: all 0.3s ease-in-out;
   border: none;
   font-size: 1em;
   cursor: pointer;
-  &:hover {
-    color: white;
-  }
+  color: white;
 `;
 
-const Github = styled(Link)`
+const Github = styled(Link)<{ $display?: boolean }>`
   position: absolute;
-  z-index: 2;
+  z-index: 1;
   bottom: 12px;
-  right: 12px;
+  right: ${(props) => (props.$display ? "" : "12px")};
+  left: ${(props) => (props.$display ? "12px" : "")};
   padding: 0.7em;
   background: black;
   border-radius: 8px;
@@ -85,10 +89,12 @@ const Github = styled(Link)`
   }
 `;
 
-const Presentation = styled.div`
+const Presentation = styled.div<{ $display?: boolean }>`
   position: absolute;
-  top: 0;
-  right: 0;
+  top: ${(props) => (props.$display ? "" : "0")};
+  right: ${(props) => (props.$display ? "" : "0")};
+  bottom: ${(props) => (props.$display ? "0" : "")};
+  left: ${(props) => (props.$display ? "0" : "")};
   z-index: -1;
   width: 72%;
   height: 100%;
@@ -119,20 +125,21 @@ export default function ProjectCard({
   text,
   link,
   github,
+  odd,
 }: Props) {
   return (
-    <Card>
-      <ImageDiv>
+    <Card $display={odd}>
+      <ImageDiv $display={odd} href={link} target="_blank">
         <ProjectPic src={image} alt={title} width={200} height={200} />
-        <LinkButton href={link} className="button" target="_blank">
+        <LinkInfo $display={odd} className="button">
           Visiter le site
-        </LinkButton>
+        </LinkInfo>
       </ImageDiv>
-      <Presentation>
+      <Presentation $display={odd}>
         <Title>{title}</Title>
         <Text>{text}</Text>
       </Presentation>
-      <Github href={github}>
+      <Github href={github} $display={odd}>
         Consulter le repo
         <GithubIcon
           src={"/assets/github.png"}

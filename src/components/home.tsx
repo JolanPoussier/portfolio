@@ -5,6 +5,7 @@ import Image from "next/image";
 import GradientComp from "./gradientComp";
 import { Title } from "./title";
 import Files from "./files";
+import Smoke from "./smoke";
 
 const Main = styled.div`
   height: 100vh;
@@ -71,6 +72,7 @@ export default function Home() {
   return (
     <Main>
       <Coffee width={200} height={180} src={"/assets/tasse.png"} alt="tasse" />
+      <Smoke />
       <Computer>
         <Text>
           <Title />

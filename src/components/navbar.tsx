@@ -13,7 +13,7 @@ const Logo = styled.div`
 
 const Container = styled.header`
   position: fixed;
-  z-index: 2;
+  z-index: 6;
   top: 24px;
   left: calc((100vw / 2) - 325px);
   min-height: 50px;

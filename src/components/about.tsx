@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 const SkillsList = [
   "Next.js",
@@ -18,6 +18,15 @@ const SkillsList = [
   "SQL",
 ];
 
+const BackgroundMotion = keyframes`
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+`;
+
 const Main = styled.section`
   width: 80%;
   margin: auto;
@@ -28,12 +37,16 @@ const Main = styled.section`
 
 const Title = styled.h1`
   font-family: ${(props) => props.theme.fonts.bold};
-  font-size: 3em;
   max-width: 1200px;
   margin: auto;
   margin-top: 3em;
   margin-bottom: 2em;
   text-align: center;
+  font-size: 3em;
+  line-height: normal;
+  background: linear-gradient(to right, #87a9ed, #b6faf7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 `;
 
 const SkillsTitle = styled.h2`
@@ -85,6 +98,10 @@ const Skill = styled.div`
   border-radius: 12px;
   padding: 0.5em;
   margin: 0 0.5em 0.5em 0;
+  background: linear-gradient(65deg, #1f2663 25%, #090a16 35%);
+  background-size: 450% auto;
+
+  animation: ${BackgroundMotion} 5s ease-in-out infinite alternate;
 `;
 
 const CV = styled(Link)`
@@ -93,7 +110,7 @@ const CV = styled(Link)`
   margin-top: 2em;
   align-self: center;
   font-family: ${(props) => props.theme.fonts.bold};
-  font-size: 1.2em;
+  font-size: 1em;
   color: black;
   padding: 0.7em;
   border-radius: 1000px;

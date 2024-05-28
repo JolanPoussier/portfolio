@@ -5,7 +5,7 @@ import styled from "styled-components";
 const ProjectGrid = styled.div`
   width: 80%;
   margin: auto;
-  height: 100vh;
+  min-height: 100vh;
 `;
 
 const Title = styled.h1`
@@ -15,6 +15,10 @@ const Title = styled.h1`
   margin: auto;
   margin-top: 3em;
   margin-bottom: 2em;
+  line-height: normal;
+  background: linear-gradient(to right, #87a9ed, #b6faf7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 `;
 
 export default function Projects() {
@@ -22,7 +26,7 @@ export default function Projects() {
     <ProjectGrid>
       <Title>Projets</Title>
       {projects.map((project, key) => {
-        return <ProjectCard key={key} {...project} />;
+        return <ProjectCard key={key} {...project} odd={key % 2 == 0} />;
       })}
     </ProjectGrid>
   );
