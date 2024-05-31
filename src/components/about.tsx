@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import Image from "next/image";
 import Link from "next/link";
 import styled, { keyframes } from "styled-components";
@@ -39,8 +40,8 @@ const Title = styled.h1`
   font-family: ${(props) => props.theme.fonts.bold};
   max-width: 1200px;
   margin: auto;
-  margin-top: 3em;
-  margin-bottom: 2em;
+  margin-top: 2em;
+  margin-bottom: 1em;
   text-align: center;
   font-size: 3em;
   line-height: normal;
@@ -133,24 +134,22 @@ export default function About() {
           <Me src={"/assets/photoSwag.png"} alt="me" width={500} height={500} />
         </Picture>
         <Content>
-          Je m&apos;appelle Jolan Poussier. Passionné par le domaine du web et
-          motivé pour gagner en compétence, j&apos;ai obtenu un titre pro bac+2
-          en développement web et web mobile après une reconversion
-          professionnelle. Je continue ma formation en autodidacte en étudiant
-          entre autre Next.JS avec lequel j&apos;ai développé plusieurs projets
-          personnels que vous pouvez découvrir plus bas.
+          Je m'appelle Jolan Poussier, et je suis passionné par le domaine du
+          web. Motivé à améliorer continuellement mes compétences, j'ai
+          récemment obtenu un titre professionnel de niveau bac+2 en
+          développement web et web mobile après une reconversion
+          professionnelle. Depuis, je poursuis ma formation en autodidacte, en
+          me concentrant notamment sur Next.js, avec lequel j'ai développé
+          plusieurs projets personnels que vous pouvez découvrir plus bas.
           <br />
           <br />
-          Ayant pour vocation de devenir développeur fullstack, je suis ouvert
-          aux différentes opportunités dans le domaine du développement et à
-          l&apos;apprentissage de nouveaux langages. Fort d&apos;une expérience
-          de trois ans dans le commerce en amont, je suis également très à
-          l&apos;aise pour travailler en équipe et communiquer, en français
-          comme en anglais.
-          <br />
-          <br />
-          Je suis actuellement à la recherche d&apos;une alternance pour
-          compléter ma formation et obtenir un bachelor.
+          Mon objectif est de devenir développeur fullstack. Je suis donc ouvert
+          à diverses opportunités dans le domaine du développement et
+          enthousiaste à l'idée d'apprendre de nouveaux langages. En plus de mes
+          compétences techniques, j'ai trois ans d'expérience dans le commerce,
+          ce qui m'a permis de développer une excellente capacité à travailler
+          en équipe et à communiquer efficacement, tant en français qu'en
+          anglais.
           <SkillsTitle>Compétences</SkillsTitle>
           <Skills>
             {SkillsList.map((skill) => (

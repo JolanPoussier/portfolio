@@ -73,19 +73,30 @@ const LinkInfo = styled.div<{ $display?: boolean }>`
 const Github = styled(Link)<{ $display?: boolean }>`
   position: absolute;
   z-index: 1;
-  bottom: 12px;
-  right: ${(props) => (props.$display ? "" : "12px")};
-  left: ${(props) => (props.$display ? "12px" : "")};
+  bottom: 24px;
+  right: ${(props) => (props.$display ? "" : "24px")};
+  left: ${(props) => (props.$display ? "24px" : "")};
   padding: 0.7em;
-  background: black;
-  border-radius: 8px;
+  background: white;
+  color: black;
+  border-radius: 12px;
+  border: 1px solid white;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease-in-out;
+  .second {
+    display: none;
+  }
   &:hover {
-    background: white;
-    color: black;
+    background: black;
+    color: white;
+    .first {
+      display: none;
+    }
+    .second {
+      display: block;
+    }
   }
 `;
 
@@ -144,6 +155,14 @@ export default function ProjectCard({
         <GithubIcon
           src={"/assets/github.png"}
           alt="github logo"
+          className="second"
+          width={20}
+          height={20}
+        />
+        <GithubIcon
+          src={"/assets/github2.png"}
+          alt="github logo2"
+          className="first"
           width={20}
           height={20}
         />

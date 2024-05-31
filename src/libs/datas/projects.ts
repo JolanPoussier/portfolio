@@ -24,7 +24,7 @@ export const projects = <Project[]>[
   {
     image: "/assets/projectsPic/portfolio.png",
     title: "Portfolio",
-    text: "Ce portfolio afin de mettre en avant les projets que j'ai pu réaliser ainsi que mes compétences techniques.",
+    text: "Ce portfolio sert à mettre en avant les projets que j'ai pu réaliser ainsi que mes compétences techniques.",
     link: "#",
     github: "https://github.com/JolanPoussier/FoodHelperAI",
   },

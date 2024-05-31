@@ -17,8 +17,8 @@ const Title = styled.h1`
   font-size: 3em;
   max-width: 1200px;
   margin: auto;
-  margin-top: 3em;
-  margin-bottom: 2em;
+  margin-top: 2em;
+  margin-bottom: 1em;
   text-align: center;
   line-height: normal;
   background: linear-gradient(to right, #87a9ed, #b6faf7);

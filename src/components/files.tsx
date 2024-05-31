@@ -43,16 +43,6 @@ export default function Files() {
   return (
     <Container>
       <Block
-        href={"/#projects"}
-        initial="hidden"
-        animate="reveal"
-        transition={{ duration: 0.2, delay: 4.5 }}
-        variants={charVariants}
-      >
-        <File width={40} height={40} src={"/assets/file.png"} alt="file" />
-        <span>Dev&apos;</span>
-      </Block>
-      <Block
         href={"/#about"}
         initial="hidden"
         animate="reveal"
@@ -61,6 +51,16 @@ export default function Files() {
       >
         <File width={40} height={40} src={"/assets/file.png"} alt="file" />
         <span>Perso</span>
+      </Block>
+      <Block
+        href={"/#projects"}
+        initial="hidden"
+        animate="reveal"
+        transition={{ duration: 0.2, delay: 4.5 }}
+        variants={charVariants}
+      >
+        <File width={40} height={40} src={"/assets/file.png"} alt="file" />
+        <span>Dev&apos;</span>
       </Block>
       <Block
         href={"/#contact"}
