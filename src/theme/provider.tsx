@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import colors from './colors';
-import fonts from './fonts';
-import { ThemeProvider } from 'styled-components';
+import colors from "./colors";
+import fonts from "./fonts";
+import { ThemeProvider } from "styled-components";
 
 export const theme = {
   colors,

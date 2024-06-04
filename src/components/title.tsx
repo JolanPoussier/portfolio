@@ -1,5 +1,3 @@
-"use client";
-
 import splitStringUsingRegex from "@/utils/splitStringUsingRegexs";
 import styled, { keyframes } from "styled-components";
 import { motion } from "framer-motion";
@@ -27,8 +25,6 @@ const Name = styled.h1`
 const Job = styled(Name)`
   font-size: 3em;
   font-family: ${(props) => props.theme.fonts.medium};
-  text-align: center;
-
   background: linear-gradient(
     to right,
     #87a9ed 20%,
@@ -45,6 +41,9 @@ const Job = styled(Name)`
   -webkit-text-fill-color: transparent;
 
   animation: ${TitleMotion} 5s ease-in-out infinite alternate;
+  @media (max-width: 600px) {
+    font-size: 2.5em;
+  }
 `;
 
 const Intro = styled(Name)`

@@ -34,6 +34,10 @@ const Main = styled.section`
   display: flex;
   justify-content: center;
   flex-direction: column;
+  margin-bottom: 1em;
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 `;
 
 const Title = styled.h1`
@@ -69,11 +73,22 @@ const Container = styled.div`
   margin: auto;
   display: flex;
   justify-content: space-between;
+  @media (max-width: 900px) {
+    flex-direction: column;
+  }
 `;
 
 const Picture = styled.div`
   width: 25vw;
   height: 25vw;
+  @media (max-width: 900px) {
+    align-self: center;
+    margin-bottom: 1em;
+    width: 60vw;
+    height: 60vw;
+    max-width: 300px;
+    max-height: 300px;
+  }
 `;
 
 const Me = styled(Image)`
@@ -92,6 +107,9 @@ const Content = styled.div`
   border-radius: 12px;
   padding: 1em;
   box-shadow: 0 0 3px white;
+  @media (max-width: 900px) {
+    width: 100%;
+  }
 `;
 
 const Skill = styled.div`

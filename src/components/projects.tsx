@@ -6,6 +6,13 @@ const ProjectGrid = styled.div`
   width: 80%;
   margin: auto;
   min-height: 100vh;
+
+  @media (max-width: 900px) {
+    width: 100%;
+  }
+  @media (max-width: 600px) {
+    width: 90%;
+  }
 `;
 
 const Title = styled.h1`

@@ -10,6 +10,10 @@ const Main = styled.section`
   display: flex;
   justify-content: center;
   flex-direction: column;
+  @media (max-width: 1200px) {
+    margin-bottom: 2em;
+    width: 100%;
+  }
 `;
 
 const Title = styled.h1`
@@ -37,6 +41,9 @@ const Container = styled.form`
   padding: 1em;
   padding-top: 3em;
   border-radius: 12px;
+  @media (max-width: 900px) {
+    width: 100%;
+  }
 `;
 
 const Champ = styled.div`
@@ -46,9 +53,19 @@ const Champ = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  @media (max-width: 600px) {
+    flex-direction: column;
+    justify-content: center;
+  }
+  @media (max-width: 600px) {
+    width: 95%;
+  }
 `;
 const Label = styled.label`
   margin-right: 1em;
+  @media (max-width: 600px) {
+    margin: 0 0 1em 0;
+  }
 `;
 const Input = styled.input`
   width: 80%;
@@ -61,6 +78,9 @@ const Input = styled.input`
   padding: 1em;
   &:focus {
     outline: none;
+  }
+  @media (max-width: 600px) {
+    width: 100%;
   }
 `;
 const Textarea = styled.textarea`
@@ -76,6 +96,9 @@ const Textarea = styled.textarea`
     outline: none;
   }
   resize: none;
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 `;
 const Error = styled.span`
   color: red;

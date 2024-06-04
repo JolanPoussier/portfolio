@@ -17,7 +17,7 @@ export const projects = <Project[]>[
   {
     image: "/assets/projectsPic/aicooker.png",
     title: "AICooker",
-    text: "AiCooker permet de générer des recettes de cuisine avec les produits de votre choix. C'est une application vide-frigo réalisée avec l'API OpenAI(chatGPT) qui compose elle-même les recettes proposées.",
+    text: "AiCooker est une application vide-frigo réalisée avec l'API OpenAI(chatGPT) qui compose elle-même les recettes proposées.",
     link: "https://ia-cooker-2cd92e0c1e3b.herokuapp.com/",
     github: "https://github.com/JolanPoussier/FoodHelperAI",
   },
