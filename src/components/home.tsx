@@ -40,9 +40,8 @@ const Text = styled.div`
   z-index: 1;
   text-align: center;
   @media (max-width: 900px) {
-    & {
-      width: 95%;
-    }
+    width: 95%;
+    height: 396px;
   }
 `;
 

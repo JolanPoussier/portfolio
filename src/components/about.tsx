@@ -34,7 +34,7 @@ const Main = styled.section`
   display: flex;
   justify-content: center;
   flex-direction: column;
-
+  margin-bottom: 1em;
   @media (max-width: 600px) {
     width: 100%;
   }

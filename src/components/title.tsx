@@ -1,5 +1,3 @@
-"use client";
-
 import splitStringUsingRegex from "@/utils/splitStringUsingRegexs";
 import styled, { keyframes } from "styled-components";
 import { motion } from "framer-motion";
