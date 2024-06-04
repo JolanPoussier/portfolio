@@ -20,6 +20,9 @@ const Card = styled.div<{ $display?: boolean }>`
   justify-content: ${(props) => (props.$display ? `flex-end` : "")};
   position: relative;
   margin-bottom: 4em;
+  @media (max-width: 600px) {
+    height: 500px;
+  }
 `;
 
 const ImageDiv = styled(Link)<{ $display?: boolean }>`
@@ -37,6 +40,16 @@ const ImageDiv = styled(Link)<{ $display?: boolean }>`
     .button {
       right: ${(props) => (props.$display ? "" : "0px")};
       left: ${(props) => (props.$display ? "0px" : "")};
+    }
+  }
+
+  @media (max-width: 600px) {
+    width: 100%;
+    height: 50%;
+    &:hover {
+      width: 100%;
+      height: 55%;
+      cursor: pointer;
     }
   }
 `;
@@ -59,15 +72,20 @@ const LinkInfo = styled.div<{ $display?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0.85;
-  backdrop-filter: blur(15px);
-  background-color: black;
+  background: rgb(0, 0, 0, 0.85);
   border-radius: 12px;
   transition: all 0.3s ease-in-out;
   border: none;
   font-size: 1em;
   cursor: pointer;
   color: white;
+  @media (max-width: 600px) {
+    left: 0;
+    right: 0;
+    background: rgb(0, 0, 0, 0.65);
+    font-size: 1.2em;
+    font-family: ${(props) => props.theme.fonts.bold};
+  }
 `;
 
 const Github = styled(Link)<{ $display?: boolean }>`
@@ -114,6 +132,13 @@ const Presentation = styled.div<{ $display?: boolean }>`
   border-radius: 24px;
   display: flex;
   flex-direction: column;
+  @media (max-width: 600px) {
+    width: 100%;
+    height: 52%;
+    top: auto;
+    bottom: 0;
+    padding: 1em;
+  }
 `;
 
 const Title = styled.h1`
