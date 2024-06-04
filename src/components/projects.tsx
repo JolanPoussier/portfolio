@@ -13,7 +13,7 @@ const Title = styled.h1`
   text-align: center;
   font-size: 3em;
   margin: auto;
-  margin-top: 2em;
+  margin-top: 3em;
   margin-bottom: 1em;
   line-height: normal;
   background: linear-gradient(to right, #87a9ed, #b6faf7);

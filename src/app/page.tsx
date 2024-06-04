@@ -12,7 +12,6 @@ import { useRef } from "react";
 import styled from "styled-components";
 
 const Main = styled.main`
-  padding: 0 2em;
   font-size: 1.1rem;
   line-height: 1.3em;
   letter-spacing: 0.2px;

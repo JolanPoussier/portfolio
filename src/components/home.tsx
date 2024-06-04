@@ -2,10 +2,10 @@ import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 import styled from "styled-components";
 import Image from "next/image";
-import GradientComp from "./gradientComp";
 import { Title } from "./title";
 import Files from "./files";
 import Smoke from "./smoke";
+import { useMediaQuery } from "react-responsive";
 
 const Main = styled.div`
   height: 100vh;
@@ -38,12 +38,23 @@ const Text = styled.div`
   flex-direction: column;
   justify-content: space-around;
   z-index: 1;
+  text-align: center;
+  @media (max-width: 900px) {
+    & {
+      width: 95%;
+    }
+  }
 `;
 
 const Picture = styled(Image)`
   width: 80%;
   aspect-ratio: 1;
   top: 0;
+  @media (max-width: 1200px) {
+    & {
+      width: 100%;
+    }
+  }
 `;
 
 const BottomLink = styled(Link)`
@@ -69,10 +80,31 @@ const Mouse = styled(Coffee)`
 `;
 
 export default function Home() {
+  const isDesktopOrLaptop = useMediaQuery({
+    query: "(min-width: 1200px)",
+  });
+  const isLaptopOrTablet = useMediaQuery({
+    query: "(min-width: 900px)",
+  });
   return (
     <Main>
-      <Coffee width={200} height={180} src={"/assets/tasse.png"} alt="tasse" />
-      <Smoke />
+      {isDesktopOrLaptop && (
+        <>
+          <Coffee
+            width={200}
+            height={180}
+            src={"/assets/tasse.png"}
+            alt="tasse"
+          />
+          <Smoke />
+          <Mouse
+            width={200}
+            height={110}
+            src={"/assets/mouse.png"}
+            alt="mouse"
+          />
+        </>
+      )}
       <Computer>
         <Text>
           <Title />
@@ -81,11 +113,12 @@ export default function Home() {
         <Picture
           width={700}
           height={400}
-          src={"/assets/pc.png"}
-          alt="Keyboard"
+          src={
+            isLaptopOrTablet ? "/assets/pc.png" : "/assets/mediacomputer.png"
+          }
+          alt="Computer"
         />
       </Computer>
-      <Mouse width={200} height={110} src={"/assets/mouse.png"} alt="mouse" />
       <BottomLink href={"/#about"}>
         <ChevronDown strokeWidth={1} size={48} />
       </BottomLink>
