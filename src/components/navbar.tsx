@@ -5,7 +5,6 @@ import { Github, Linkedin, Plus } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { useMediaQuery } from "react-responsive";
 import styled, { css, keyframes } from "styled-components";
 
 const rotateButton = keyframes`
@@ -50,9 +49,9 @@ const Container = styled.header`
   font-size: 18px;
 `;
 
-const ContainerMobile = styled(Container)<{ modal: Boolean }>`
+const ContainerMobile = styled(Container)<{ $modal: Boolean }>`
   left: auto;
-  right: ${(props) => (props.modal ? `24px` : `-200px`)};
+  right: ${(props) => (props.$modal ? `24px` : `-200px`)};
   top: 84px;
   flex-direction: column;
   width: 200px;
@@ -66,7 +65,7 @@ const animation = () => css`
 const animationBack = () => css`
   ${rotateBackButton} 0.5s ease-in-out alternate forwards;
 `;
-const NavbarButton = styled.button<{ modal: Boolean }>`
+const NavbarButton = styled.button<{ $modal: Boolean }>`
   position: fixed;
   z-index: 6;
   top: 24px;
@@ -80,8 +79,8 @@ const NavbarButton = styled.button<{ modal: Boolean }>`
   border: none;
   color: white;
 
-  ${({ modal }) =>
-    modal
+  ${({ $modal }) =>
+    $modal
       ? css`
           animation: ${animation};
         `
@@ -121,9 +120,6 @@ const NavLink = styled(Link)<{ focus?: string }>`
 `;
 
 export default function Navbar({ location }: { location: string }) {
-  // const isLaptopOrTablet = useMediaQuery({
-  //   query: "(min-width: 900px)",
-  // });
   const [modalOpen, setModalOpen] = useState<Boolean>(false);
   return (
     <>
@@ -157,13 +153,13 @@ export default function Navbar({ location }: { location: string }) {
       </div>
       <div className={style.mobileNavbar}>
         <NavbarButton
-          modal={modalOpen}
+          $modal={modalOpen}
           onClick={() => setModalOpen(!modalOpen)}
         >
           <Plus />
         </NavbarButton>
 
-        <ContainerMobile modal={modalOpen}>
+        <ContainerMobile $modal={modalOpen}>
           <NavbarContent location={location} setModalOpen={setModalOpen} />
         </ContainerMobile>
       </div>
