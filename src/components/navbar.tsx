@@ -1,5 +1,6 @@
 "use client";
 
+import style from "responsive.module.scss";
 import { Github, Linkedin, Plus } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -60,10 +61,10 @@ const ContainerMobile = styled(Container)<{ modal: Boolean }>`
 `;
 
 const animation = () => css`
-  ${rotateButton} 5s alternate;
+  ${rotateButton} 0.5s ease-in-out alternate forwards;
 `;
 const animationBack = () => css`
-  ${rotateBackButton} 5s alternate;
+  ${rotateBackButton} 0.5s ease-in-out alternate forwards;
 `;
 const NavbarButton = styled.button<{ modal: Boolean }>`
   position: fixed;
@@ -82,10 +83,10 @@ const NavbarButton = styled.button<{ modal: Boolean }>`
   ${({ modal }) =>
     modal
       ? css`
-          animation: ${rotateButton} 0.5s ease-in-out alternate forwards;
+          animation: ${animation};
         `
       : css`
-          animation: ${rotateBackButton} 0.5s ease-in-out alternate forwards;
+          animation: ${animationBack} 0.5s ease-in-out alternate forwards;
         `}
 `;
 
@@ -132,6 +133,7 @@ export default function Navbar({ location }: { location: string }) {
           alt="Logo with inital JP"
           width={100}
           height={100}
+          priority
         />
       </Logo>
       {isLaptopOrTablet && (
