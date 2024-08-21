@@ -81,6 +81,7 @@ const Container = styled.div`
 const Picture = styled.div`
   width: 25vw;
   height: 25vw;
+  margin-right: 2em;
   @media (max-width: 900px) {
     align-self: center;
     margin-bottom: 1em;

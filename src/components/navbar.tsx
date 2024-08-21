@@ -1,10 +1,10 @@
 "use client";
 
+import style from "./responsive.module.scss";
 import { Github, Linkedin, Plus } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { useMediaQuery } from "react-responsive";
 import styled, { css, keyframes } from "styled-components";
 
 const rotateButton = keyframes`
@@ -49,9 +49,9 @@ const Container = styled.header`
   font-size: 18px;
 `;
 
-const ContainerMobile = styled(Container)<{ modal: Boolean }>`
+const ContainerMobile = styled(Container)<{ $modal: Boolean }>`
   left: auto;
-  right: ${(props) => (props.modal ? `24px` : `-200px`)};
+  right: ${(props) => (props.$modal ? `24px` : `-200px`)};
   top: 84px;
   flex-direction: column;
   width: 200px;
@@ -60,12 +60,12 @@ const ContainerMobile = styled(Container)<{ modal: Boolean }>`
 `;
 
 const animation = () => css`
-  ${rotateButton} 5s alternate;
+  ${rotateButton} 0.5s ease-in-out alternate forwards;
 `;
 const animationBack = () => css`
-  ${rotateBackButton} 5s alternate;
+  ${rotateBackButton} 0.5s ease-in-out alternate forwards;
 `;
-const NavbarButton = styled.button<{ modal: Boolean }>`
+const NavbarButton = styled.button<{ $modal: Boolean }>`
   position: fixed;
   z-index: 6;
   top: 24px;
@@ -79,13 +79,13 @@ const NavbarButton = styled.button<{ modal: Boolean }>`
   border: none;
   color: white;
 
-  ${({ modal }) =>
-    modal
+  ${({ $modal }) =>
+    $modal
       ? css`
-          animation: ${rotateButton} 0.5s ease-in-out alternate forwards;
+          animation: ${animation};
         `
       : css`
-          animation: ${rotateBackButton} 0.5s ease-in-out alternate forwards;
+          animation: ${animationBack} 0.5s ease-in-out alternate forwards;
         `}
 `;
 
@@ -120,9 +120,6 @@ const NavLink = styled(Link)<{ focus?: string }>`
 `;
 
 export default function Navbar({ location }: { location: string }) {
-  const isLaptopOrTablet = useMediaQuery({
-    query: "(min-width: 900px)",
-  });
   const [modalOpen, setModalOpen] = useState<Boolean>(false);
   return (
     <>
@@ -132,43 +129,40 @@ export default function Navbar({ location }: { location: string }) {
           alt="Logo with inital JP"
           width={100}
           height={100}
+          priority
         />
       </Logo>
-      {isLaptopOrTablet && (
-        <>
-          <Container>
-            <NavbarContent location={location} />
-          </Container>
-          <ContactSection>
-            <ContactLink
-              target="_blank"
-              href={"https://github.com/JolanPoussier"}
-            >
-              <Github strokeWidth={1.2} />
-            </ContactLink>
-            <ContactLink
-              target="_blank"
-              href={"https://www.linkedin.com/in/jolan-poussier/"}
-            >
-              <Linkedin strokeWidth={1.2} />
-            </ContactLink>
-          </ContactSection>
-        </>
-      )}
-      {!isLaptopOrTablet && (
-        <>
-          <NavbarButton
-            modal={modalOpen}
-            onClick={() => setModalOpen(!modalOpen)}
+      <div className={style.desktopNavbar}>
+        <Container>
+          <NavbarContent location={location} />
+        </Container>
+        <ContactSection>
+          <ContactLink
+            target="_blank"
+            href={"https://github.com/JolanPoussier"}
           >
-            <Plus />
-          </NavbarButton>
+            <Github strokeWidth={1.2} />
+          </ContactLink>
+          <ContactLink
+            target="_blank"
+            href={"https://www.linkedin.com/in/jolan-poussier/"}
+          >
+            <Linkedin strokeWidth={1.2} />
+          </ContactLink>
+        </ContactSection>
+      </div>
+      <div className={style.mobileNavbar}>
+        <NavbarButton
+          $modal={modalOpen}
+          onClick={() => setModalOpen(!modalOpen)}
+        >
+          <Plus />
+        </NavbarButton>
 
-          <ContainerMobile modal={modalOpen}>
-            <NavbarContent location={location} setModalOpen={setModalOpen} />
-          </ContainerMobile>
-        </>
-      )}
+        <ContainerMobile $modal={modalOpen}>
+          <NavbarContent location={location} setModalOpen={setModalOpen} />
+        </ContainerMobile>
+      </div>
     </>
   );
 }

@@ -1,3 +1,4 @@
+import style from "./responsive.module.scss";
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 import styled from "styled-components";
@@ -5,7 +6,6 @@ import Image from "next/image";
 import { Title } from "./title";
 import Files from "./files";
 import Smoke from "./smoke";
-import { useMediaQuery } from "react-responsive";
 
 const Main = styled.div`
   height: 100vh;
@@ -79,42 +79,35 @@ const Mouse = styled(Coffee)`
 `;
 
 export default function Home() {
-  const isDesktopOrLaptop = useMediaQuery({
-    query: "(min-width: 1200px)",
-  });
-  const isLaptopOrTablet = useMediaQuery({
-    query: "(min-width: 900px)",
-  });
   return (
     <Main>
-      {isDesktopOrLaptop && (
-        <>
-          <Coffee
-            width={200}
-            height={180}
-            src={"/assets/tasse.png"}
-            alt="tasse"
-          />
-          <Smoke />
-          <Mouse
-            width={200}
-            height={110}
-            src={"/assets/mouse.png"}
-            alt="mouse"
-          />
-        </>
-      )}
+      <div className={style.desktopHome}>
+        <Coffee
+          width={200}
+          height={180}
+          src={"/assets/tasse.png"}
+          alt="tasse"
+        />
+        <Smoke />
+        <Mouse width={200} height={110} src={"/assets/mouse.png"} alt="mouse" />
+      </div>
       <Computer>
         <Text>
           <Title />
           <Files />
         </Text>
         <Picture
+          className={style.desktopHomeComputer}
           width={700}
           height={400}
-          src={
-            isLaptopOrTablet ? "/assets/pc.png" : "/assets/mediacomputer.png"
-          }
+          src="/assets/mediacomputer.png"
+          alt="Computer"
+        />
+        <Picture
+          className={style.mobileHomeComputer}
+          width={700}
+          height={400}
+          src="/assets/pc.png"
           alt="Computer"
         />
       </Computer>
