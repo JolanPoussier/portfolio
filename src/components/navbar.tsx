@@ -1,6 +1,6 @@
 "use client";
 
-import style from "responsive.module.scss";
+import style from "./responsive.module.scss";
 import { Github, Linkedin, Plus } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -121,9 +121,9 @@ const NavLink = styled(Link)<{ focus?: string }>`
 `;
 
 export default function Navbar({ location }: { location: string }) {
-  const isLaptopOrTablet = useMediaQuery({
-    query: "(min-width: 900px)",
-  });
+  // const isLaptopOrTablet = useMediaQuery({
+  //   query: "(min-width: 900px)",
+  // });
   const [modalOpen, setModalOpen] = useState<Boolean>(false);
   return (
     <>
@@ -136,41 +136,37 @@ export default function Navbar({ location }: { location: string }) {
           priority
         />
       </Logo>
-      {isLaptopOrTablet && (
-        <>
-          <Container>
-            <NavbarContent location={location} />
-          </Container>
-          <ContactSection>
-            <ContactLink
-              target="_blank"
-              href={"https://github.com/JolanPoussier"}
-            >
-              <Github strokeWidth={1.2} />
-            </ContactLink>
-            <ContactLink
-              target="_blank"
-              href={"https://www.linkedin.com/in/jolan-poussier/"}
-            >
-              <Linkedin strokeWidth={1.2} />
-            </ContactLink>
-          </ContactSection>
-        </>
-      )}
-      {!isLaptopOrTablet && (
-        <>
-          <NavbarButton
-            modal={modalOpen}
-            onClick={() => setModalOpen(!modalOpen)}
+      <div className={style.desktopNavbar}>
+        <Container>
+          <NavbarContent location={location} />
+        </Container>
+        <ContactSection>
+          <ContactLink
+            target="_blank"
+            href={"https://github.com/JolanPoussier"}
           >
-            <Plus />
-          </NavbarButton>
+            <Github strokeWidth={1.2} />
+          </ContactLink>
+          <ContactLink
+            target="_blank"
+            href={"https://www.linkedin.com/in/jolan-poussier/"}
+          >
+            <Linkedin strokeWidth={1.2} />
+          </ContactLink>
+        </ContactSection>
+      </div>
+      <div className={style.mobileNavbar}>
+        <NavbarButton
+          modal={modalOpen}
+          onClick={() => setModalOpen(!modalOpen)}
+        >
+          <Plus />
+        </NavbarButton>
 
-          <ContainerMobile modal={modalOpen}>
-            <NavbarContent location={location} setModalOpen={setModalOpen} />
-          </ContainerMobile>
-        </>
-      )}
+        <ContainerMobile modal={modalOpen}>
+          <NavbarContent location={location} setModalOpen={setModalOpen} />
+        </ContainerMobile>
+      </div>
     </>
   );
 }

@@ -1,0 +1,29 @@
+@media screen and (min-width: 769px) {
+    .mobileNavbar {
+        display: none;
+    }
+}
+@media screen and (max-width: 768px) {
+    .desktopNavbar {
+        display: none;
+    }
+}
+
+
+
+@media screen and (max-width: 1200px) {
+    .desktopHome {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .desktopHomeComputer {
+        display: none;
+    }
+}
+@media screen and (max-width: 900px) {
+    .mobileHomeComputer {
+        display: none;
+    }
+}
