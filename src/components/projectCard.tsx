@@ -27,7 +27,7 @@ const rotateQuarter = keyframes`
 const Card = styled.div<{ $display?: boolean; $isBig?: boolean }>`
   width: 100%;
   max-width: 1000px;
-  height: ${(props) => (props.$isBig ? "750px" : "250px")};
+  // height: ${(props) => (props.$isBig ? "650px" : "250px")};
   margin: auto;
   display: flex;
   transition: all 0.4s ease-in-out;
@@ -35,13 +35,13 @@ const Card = styled.div<{ $display?: boolean; $isBig?: boolean }>`
   justify-content: ${(props) => (props.$isBig ? `flex-start` : "")};
   position: relative;
   margin-bottom: 4em;
-  @media (max-width: 600px) {
-    height: 500px;
-  }
 `;
 
 const ImageDiv = styled(Link)<{ $display?: boolean; $isBig?: boolean }>`
-  position: relative;
+  position: absolute;
+  z-index: 2;
+  right: ${(props) => (props.$display ? "" : "0")};
+  left: ${(props) => (props.$display ? "0" : "")};
   width: ${(props) => (props.$isBig ? "100%" : "30%")};
   height: ${(props) => (props.$isBig ? "32%" : "90%")};
   self-align: end;
@@ -49,10 +49,8 @@ const ImageDiv = styled(Link)<{ $display?: boolean; $isBig?: boolean }>`
   border-radius: 20px;
   overflow: hidden;
   &:hover {
-    width: 32%;
-    width: ${(props) => (props.$isBig ? "100%" : "32%")};
-    height: 95%;
-    height: ${(props) => (props.$isBig ? "31%" : "95%")};
+    width: ${(props) => (props.$isBig ? "100%" : "33%")};
+    height: ${(props) => (props.$isBig ? "34%" : "95%")};
     cursor: pointer;
     .linkInfo {
       right: ${(props) => (props.$display ? "" : "0px")};
@@ -62,12 +60,33 @@ const ImageDiv = styled(Link)<{ $display?: boolean; $isBig?: boolean }>`
 
   @media (max-width: 600px) {
     width: 100%;
-    height: 50%;
+    height: 30%;
     &:hover {
       width: 100%;
-      height: 55%;
+      height: 35%;
       cursor: pointer;
     }
+  }
+`;
+
+const Presentation = styled.div<{ $display?: boolean; $isBig?: boolean }>`
+  position: relative;
+  z-index: -1;
+  width: ${(props) => (props.$isBig ? "100%" : "72%")};
+  height: ${(props) => (props.$isBig ? "70%" : "100%")};
+  top: ${(props) => (props.$isBig ? "30%" : "")};
+  padding: 28px;
+  border: 1px white solid;
+  border-radius: 24px;
+  display: flex;
+  align-items: ${(props) => (props.$isBig ? "center" : "")};
+  flex-direction: column;
+  @media (max-width: 600px) {
+    width: 100%;
+    height: 52%;
+    top: auto;
+    bottom: 0;
+    padding: 1em;
   }
 `;
 
@@ -105,13 +124,13 @@ const LinkInfo = styled.div<{ $display?: boolean }>`
   }
 `;
 
-const Github = styled(Link)<{ $display?: boolean }>`
+const Github = styled(Link)<{ $display?: boolean; $isBig?: boolean }>`
   width: 220px;
   position: absolute;
   z-index: 1;
   bottom: 24px;
-  right: ${(props) => (props.$display ? "" : "24px")};
-  left: ${(props) => (props.$display ? "24px" : "")};
+  left: ${(props) =>
+    props.$display ? (props.$isBig ? "24px" : "calc(30%)") : "24px"};
   padding: 0.7em;
   background: white;
   color: black;
@@ -135,7 +154,7 @@ const Github = styled(Link)<{ $display?: boolean }>`
     }
   }
   @media (max-width: 600px) {
-    bottom: 200px;
+    bottom: 70px;
     right: 50%;
     left: 50%;
     transform: translate(-50%, -0);
@@ -150,10 +169,8 @@ const ReadMore = styled.button<{ $isBig?: boolean; $display?: boolean }>`
   position: absolute;
   z-index: 99;
   bottom: 24px;
-  left: ${(props) =>
-    props.$display ? "" : props.$isBig ? "calc(24px)" : "calc(30%)"};
   right: ${(props) =>
-    props.$display ? (props.$isBig ? "calc(24px)" : "calc(30%)") : ""};
+    props.$display ? "24px" : props.$isBig ? "24px" : "calc(30%)"};
   padding: 0.7em;
   background: transparent;
   color: white;
@@ -165,6 +182,7 @@ const ReadMore = styled.button<{ $isBig?: boolean; $display?: boolean }>`
   transition: all 0.2s ease-in-out;
   cursor: pointer;
   @media (max-width: 600px) {
+    bottom: 10px;
     right: 50%;
     left: 50%;
     transform: translate(-50%, -0);
@@ -175,30 +193,6 @@ const ReadMore = styled.button<{ $isBig?: boolean; $display?: boolean }>`
   }
   .minus {
     margin-left: 0.6em;
-  }
-`;
-
-const Presentation = styled.div<{ $display?: boolean; $isBig?: boolean }>`
-  position: absolute;
-  top: ${(props) => (props.$isBig ? "30%" : props.$display ? "" : "0")};
-  right: ${(props) => (props.$display ? "" : "0")};
-  bottom: ${(props) => (props.$display || props.$isBig ? "0" : "")};
-  left: ${(props) => (props.$display ? "0" : "")};
-  z-index: -1;
-  width: ${(props) => (props.$isBig ? "100%" : "72%")};
-  height: ${(props) => (props.$isBig ? "70%" : "100%")};
-  padding: 2em;
-  border: 1px white solid;
-  border-radius: 24px;
-  display: flex;
-  align-items: ${(props) => (props.$isBig ? "center" : "")};
-  flex-direction: column;
-  @media (max-width: 600px) {
-    width: 100%;
-    height: 52%;
-    top: auto;
-    bottom: 0;
-    padding: 1em;
   }
 `;
 
@@ -275,7 +269,7 @@ export default function ProjectCard({
           </>
         )}
       </Presentation>
-      <Github href={github} $display={odd}>
+      <Github href={github} $display={odd} $isBig={isBig}>
         Consulter le repo
         <GithubIcon
           src={"/assets/github.png"}
