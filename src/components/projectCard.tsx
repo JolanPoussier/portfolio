@@ -1,23 +1,38 @@
+import { Minus, Plus } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import styled from "styled-components";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import styled, { keyframes } from "styled-components";
 
 interface Props {
   image: string;
   title: string;
   text: string;
+  development: string;
   link: string;
   github: string;
   odd: boolean;
+  technos: string[];
 }
 
-const Card = styled.div<{ $display?: boolean }>`
+const rotateQuarter = keyframes`
+   0%, 4% { transform: rotate(0deg); }
+   4%, 15% { transform: rotate(-18deg); }
+   15%, 17% { transform: rotate(99deg); }
+   17% { transform: rotate(90deg); }
+  100% { transform: rotate(90deg); }
+`;
+
+const Card = styled.div<{ $display?: boolean; $isBig?: boolean }>`
   width: 100%;
   max-width: 1000px;
-  height: 250px;
+  height: ${(props) => (props.$isBig ? "750px" : "250px")};
   margin: auto;
   display: flex;
+  transition: all 0.4s ease-in-out;
   justify-content: ${(props) => (props.$display ? `flex-end` : "")};
+  justify-content: ${(props) => (props.$isBig ? `flex-start` : "")};
   position: relative;
   margin-bottom: 4em;
   @media (max-width: 600px) {
@@ -25,19 +40,21 @@ const Card = styled.div<{ $display?: boolean }>`
   }
 `;
 
-const ImageDiv = styled(Link)<{ $display?: boolean }>`
+const ImageDiv = styled(Link)<{ $display?: boolean; $isBig?: boolean }>`
   position: relative;
-  width: 30%;
-  height: 90%;
+  width: ${(props) => (props.$isBig ? "100%" : "30%")};
+  height: ${(props) => (props.$isBig ? "32%" : "90%")};
   self-align: end;
   transition: all 0.2s ease-in-out;
   border-radius: 20px;
   overflow: hidden;
   &:hover {
     width: 32%;
+    width: ${(props) => (props.$isBig ? "100%" : "32%")};
     height: 95%;
+    height: ${(props) => (props.$isBig ? "31%" : "95%")};
     cursor: pointer;
-    .button {
+    .linkInfo {
       right: ${(props) => (props.$display ? "" : "0px")};
       left: ${(props) => (props.$display ? "0px" : "")};
     }
@@ -89,6 +106,7 @@ const LinkInfo = styled.div<{ $display?: boolean }>`
 `;
 
 const Github = styled(Link)<{ $display?: boolean }>`
+  width: 220px;
   position: absolute;
   z-index: 1;
   bottom: 24px;
@@ -116,21 +134,64 @@ const Github = styled(Link)<{ $display?: boolean }>`
       display: block;
     }
   }
+  @media (max-width: 600px) {
+    bottom: 200px;
+    right: 50%;
+    left: 50%;
+    transform: translate(-50%, -0);
+  }
 `;
 
-const Presentation = styled.div<{ $display?: boolean }>`
+const ReadMore = styled.button<{ $isBig?: boolean; $display?: boolean }>`
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  width: 160px;
   position: absolute;
-  top: ${(props) => (props.$display ? "" : "0")};
+  z-index: 99;
+  bottom: 24px;
+  left: ${(props) =>
+    props.$display ? "" : props.$isBig ? "calc(24px)" : "calc(30%)"};
+  right: ${(props) =>
+    props.$display ? (props.$isBig ? "calc(24px)" : "calc(30%)") : ""};
+  padding: 0.7em;
+  background: transparent;
+  color: white;
+  border-radius: 12px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  @media (max-width: 600px) {
+    right: 50%;
+    left: 50%;
+    transform: translate(-50%, -0);
+  }
+  .plus {
+    margin-left: 0.6em;
+    animation: ${rotateQuarter} 6s ease-in-out infinite;
+  }
+  .minus {
+    margin-left: 0.6em;
+  }
+`;
+
+const Presentation = styled.div<{ $display?: boolean; $isBig?: boolean }>`
+  position: absolute;
+  top: ${(props) => (props.$isBig ? "30%" : props.$display ? "" : "0")};
   right: ${(props) => (props.$display ? "" : "0")};
-  bottom: ${(props) => (props.$display ? "0" : "")};
+  bottom: ${(props) => (props.$display || props.$isBig ? "0" : "")};
   left: ${(props) => (props.$display ? "0" : "")};
   z-index: -1;
-  width: 72%;
-  height: 100%;
+  width: ${(props) => (props.$isBig ? "100%" : "72%")};
+  height: ${(props) => (props.$isBig ? "70%" : "100%")};
   padding: 2em;
   border: 1px white solid;
   border-radius: 24px;
   display: flex;
+  align-items: ${(props) => (props.$isBig ? "center" : "")};
   flex-direction: column;
   @media (max-width: 600px) {
     width: 100%;
@@ -141,39 +202,78 @@ const Presentation = styled.div<{ $display?: boolean }>`
   }
 `;
 
-const Title = styled.h1`
+const Title = styled.h1<{ $isBig?: boolean }>`
   font-size: 2.2em;
   font-family: ${(props) => props.theme.fonts.bold};
-  margin-bottom: 0.5em;
+  margin: ${(props) => (props.$isBig ? "0.8em 0" : "0 0 0.5em 0")};
 `;
 
 const Text = styled.p`
   font-size: 1em;
 `;
+const Development = styled(Text)``;
 
 const GithubIcon = styled(Image)`
   margin-left: 1em;
+`;
+
+const IntroTechno = styled.p`
+  margin: 1em 0 0.8em 0;
+`;
+
+const Technologie = styled.div`
+  border: 1px solid white;
+  border-radius: 12px;
+  padding: 0.5em;
+  margin: 0 0.5em 0.5em 0;
+  background: linear-gradient(65deg, #1f2663 25%, #090a16 35%);
+  background-size: 200% auto;
+`;
+
+const Technologies = styled.div`
+  display: flex;
+  flex-wrap: wrap;
 `;
 
 export default function ProjectCard({
   image,
   title,
   text,
+  development,
   link,
   github,
   odd,
+  technos,
 }: Props) {
+  const [isBig, setisBig] = useState(false);
+  const router = useRouter();
   return (
-    <Card $display={odd}>
-      <ImageDiv $display={odd} href={link} target="_blank">
-        <ProjectPic src={image} alt={title} width={200} height={200} />
-        <LinkInfo $display={odd} className="button">
+    <Card $display={odd} $isBig={isBig} id={title}>
+      <ImageDiv
+        $isBig={isBig}
+        $display={odd}
+        href={link}
+        target={title === "Portfolio" ? "" : `_blank`}
+      >
+        <ProjectPic src={image} alt={title} width={900} height={900} />
+        <LinkInfo $display={odd} className="linkInfo">
           Visiter le site
         </LinkInfo>
       </ImageDiv>
-      <Presentation $display={odd}>
-        <Title>{title}</Title>
+      <Presentation $isBig={isBig} $display={odd}>
+        <Title $isBig={isBig}>{title}</Title>
         <Text>{text}</Text>
+        {isBig && (
+          <>
+            <Development>{development}</Development>
+            <IntroTechno>Développer à l&apos;aide de :</IntroTechno>
+            <Technologies>
+              {technos.map((techno, id) => (
+                <Technologie key={id}>{techno}</Technologie>
+              ))}
+            </Technologies>
+          </>
+        )}
       </Presentation>
       <Github href={github} $display={odd}>
         Consulter le repo
@@ -192,6 +292,33 @@ export default function ProjectCard({
           height={20}
         />
       </Github>
+      <ReadMore
+        $display={odd}
+        $isBig={isBig}
+        onClick={() => {
+          !isBig ? router.push(`/#${title}`, { scroll: true }) : "";
+          setisBig(!isBig);
+        }}
+      >
+        {isBig ? "Réduire" : "En savoir"}
+        {isBig ? (
+          <Minus
+            color="white"
+            width={30}
+            height={30}
+            strokeWidth={3}
+            className="minus"
+          />
+        ) : (
+          <Plus
+            color="white"
+            className="plus"
+            width={30}
+            height={30}
+            strokeWidth={3}
+          />
+        )}
+      </ReadMore>
     </Card>
   );
 }

@@ -90,6 +90,7 @@ const Textarea = styled.textarea`
   border: 1px solid white;
   border-radius: 12px;
   color: white;
+  font-family: ${(props) => props.theme.fonts.light};
   font-size: 1em;
   padding: 1em;
   &:focus {
