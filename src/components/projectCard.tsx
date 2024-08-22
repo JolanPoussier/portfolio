@@ -27,7 +27,7 @@ const rotateQuarter = keyframes`
 const Card = styled.div<{ $display?: boolean; $isBig?: boolean }>`
   width: 100%;
   max-width: 1000px;
-  // height: ${(props) => (props.$isBig ? "650px" : "250px")};
+  height: ${(props) => (props.$isBig ? "650px" : "250px")};
   margin: auto;
   display: flex;
   transition: all 0.4s ease-in-out;
@@ -71,7 +71,7 @@ const ImageDiv = styled(Link)<{ $display?: boolean; $isBig?: boolean }>`
 
 const Presentation = styled.div<{ $display?: boolean; $isBig?: boolean }>`
   position: relative;
-  z-index: -1;
+  z-index: 1;
   width: ${(props) => (props.$isBig ? "100%" : "72%")};
   height: ${(props) => (props.$isBig ? "70%" : "100%")};
   top: ${(props) => (props.$isBig ? "30%" : "")};
@@ -126,12 +126,7 @@ const LinkInfo = styled.div<{ $display?: boolean }>`
 
 const Github = styled(Link)<{ $display?: boolean; $isBig?: boolean }>`
   width: 220px;
-  position: absolute;
-  z-index: 1;
-  bottom: 24px;
-  left: ${(props) =>
-    props.$display ? (props.$isBig ? "24px" : "calc(30%)") : "24px"};
-  padding: 0.7em;
+  height: 48px;
   background: white;
   color: black;
   border-radius: 12px;
@@ -166,12 +161,7 @@ const ReadMore = styled.button<{ $isBig?: boolean; $display?: boolean }>`
   font-weight: inherit;
   font-size: inherit;
   width: 160px;
-  position: absolute;
-  z-index: 99;
-  bottom: 24px;
-  right: ${(props) =>
-    props.$display ? "24px" : props.$isBig ? "24px" : "calc(30%)"};
-  padding: 0.7em;
+  height: 48px;
   background: transparent;
   color: white;
   border-radius: 12px;
@@ -194,6 +184,13 @@ const ReadMore = styled.button<{ $isBig?: boolean; $display?: boolean }>`
   .minus {
     margin-left: 0.6em;
   }
+`;
+
+const NavCard = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2em;
 `;
 
 const Title = styled.h1<{ $isBig?: boolean }>`
@@ -268,51 +265,53 @@ export default function ProjectCard({
             </Technologies>
           </>
         )}
+        <NavCard>
+          <Github href={github} $display={odd} $isBig={isBig}>
+            Consulter le repo
+            <GithubIcon
+              src={"/assets/github.png"}
+              alt="github logo"
+              className="second"
+              width={20}
+              height={20}
+            />
+            <GithubIcon
+              src={"/assets/github2.png"}
+              alt="github logo2"
+              className="first"
+              width={20}
+              height={20}
+            />
+          </Github>
+          <ReadMore
+            $display={odd}
+            $isBig={isBig}
+            onClick={() => {
+              !isBig ? router.push(`/#${title}`, { scroll: true }) : "";
+              setisBig(!isBig);
+            }}
+          >
+            {isBig ? "Réduire" : "En savoir"}
+            {isBig ? (
+              <Minus
+                color="white"
+                width={30}
+                height={30}
+                strokeWidth={3}
+                className="minus"
+              />
+            ) : (
+              <Plus
+                color="white"
+                className="plus"
+                width={30}
+                height={30}
+                strokeWidth={3}
+              />
+            )}
+          </ReadMore>
+        </NavCard>
       </Presentation>
-      <Github href={github} $display={odd} $isBig={isBig}>
-        Consulter le repo
-        <GithubIcon
-          src={"/assets/github.png"}
-          alt="github logo"
-          className="second"
-          width={20}
-          height={20}
-        />
-        <GithubIcon
-          src={"/assets/github2.png"}
-          alt="github logo2"
-          className="first"
-          width={20}
-          height={20}
-        />
-      </Github>
-      <ReadMore
-        $display={odd}
-        $isBig={isBig}
-        onClick={() => {
-          !isBig ? router.push(`/#${title}`, { scroll: true }) : "";
-          setisBig(!isBig);
-        }}
-      >
-        {isBig ? "Réduire" : "En savoir"}
-        {isBig ? (
-          <Minus
-            color="white"
-            width={30}
-            height={30}
-            strokeWidth={3}
-            className="minus"
-          />
-        ) : (
-          <Plus
-            color="white"
-            className="plus"
-            width={30}
-            height={30}
-            strokeWidth={3}
-          />
-        )}
-      </ReadMore>
     </Card>
   );
 }
