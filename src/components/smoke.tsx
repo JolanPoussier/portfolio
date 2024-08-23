@@ -2,10 +2,10 @@ import styled, { keyframes } from "styled-components";
 
 const moveSmoke = keyframes`
   from {
-    bottom: 45%;
+    bottom: 47%;
   }
   to {
-    bottom: calc(45% + 50px);
+    bottom: calc(47% + 50px);
   }
 `;
 
