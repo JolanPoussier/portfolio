@@ -32,9 +32,9 @@ const Card = styled.div<{ $display?: boolean; $isBig?: boolean }>`
   display: flex;
   flex-direction: column;
   transition: all 0.4s ease-in-out;
-  // justify-content: ${(props) => (props.$isBig ? `flex-start` : "")};
   position: relative;
   margin-bottom: 4em;
+  scroll-margin-top: 3.9em;
   @media (max-width: 1000px) {
     height: ${(props) => (props.$isBig ? "800px" : "")};
   }
@@ -199,9 +199,13 @@ const NavCard = styled.div`
   }
 `;
 
-const ContentSection = styled.div``;
+const ContentSection = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 const Title = styled.h1<{ $isBig?: boolean }>`
+  align-self: center;
   font-size: 2.2em;
   font-family: ${(props) => props.theme.fonts.bold};
   margin: ${(props) => (props.$isBig ? "0.8em 0" : "0 0 0.5em 0")};
@@ -218,6 +222,12 @@ const GithubIcon = styled(Image)`
 
 const IntroTechno = styled.p`
   margin: 1em 0 0.8em 0;
+`;
+
+const TechnoSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const Technologie = styled.div`
@@ -266,14 +276,14 @@ export default function ProjectCard({
           {isBig && <Development>{development}</Development>}
         </ContentSection>
         {isBig && (
-          <>
-            <IntroTechno>Développer à l&apos;aide de :</IntroTechno>
+          <TechnoSection>
+            <IntroTechno>Développé à l&apos;aide de :</IntroTechno>
             <Technologies>
               {technos.map((techno, id) => (
                 <Technologie key={id}>{techno}</Technologie>
               ))}
             </Technologies>
-          </>
+          </TechnoSection>
         )}
         <NavCard>
           <Github href={github} $display={odd} $isBig={isBig}>

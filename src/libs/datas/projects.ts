@@ -16,7 +16,7 @@ export const projects = <Project[]>[
     link: "https://www.outspeed.fr/",
     github: "https://github.com/JolanPoussier/ProjectRL",
     development:
-      "Un back-end a été créé sur Next.JS (avec Node.JS) en Programmation Orientée Objet en utilisant un système de classe. La communication avec la BDD, créée et gérée sur Vercel, s'est faite à l'aide de l'ORM Prisma.",
+      "Le back-end a été créé sur Next.JS (avec Node.JS) en Programmation Orientée Objet en utilisant des classes. La communication avec la BDD, créée et gérée sur Vercel, s'est faite à l'aide de l'ORM Prisma.",
     technos: ["Next.JS", "Node.JS", "TypeScript", "SCSS", "Prisma", "Vercel"],
   },
   {
@@ -26,7 +26,7 @@ export const projects = <Project[]>[
     link: "https://ia-cooker-2cd92e0c1e3b.herokuapp.com/",
     github: "https://github.com/JolanPoussier/FoodHelperAI",
     development:
-      "Des test end to end ont été mis en place sur l'application à l'aide de Playwrite, ainsi que des github Actions (CI/CD). La totalité du contenu graphique a été généré par IA.",
+      "Des tests end to end ont été mis en place sur l'application à l'aide de Playwrite, ainsi que des github Actions (CI/CD). La totalité du contenu graphique a été généré par IA.",
     technos: [
       "Next.JS",
       "Node.JS",
