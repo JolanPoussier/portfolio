@@ -30,11 +30,20 @@ const Card = styled.div<{ $display?: boolean; $isBig?: boolean }>`
   height: ${(props) => (props.$isBig ? "650px" : "250px")};
   margin: auto;
   display: flex;
+  flex-direction: column;
   transition: all 0.4s ease-in-out;
-  justify-content: ${(props) => (props.$display ? `flex-end` : "")};
-  justify-content: ${(props) => (props.$isBig ? `flex-start` : "")};
+  // justify-content: ${(props) => (props.$isBig ? `flex-start` : "")};
   position: relative;
   margin-bottom: 4em;
+  @media (max-width: 1000px) {
+    height: ${(props) => (props.$isBig ? "800px" : "")};
+  }
+  @media (max-width: 600px) {
+    height: ${(props) => (props.$isBig ? "1000px" : "450px")};
+  }
+  @media (max-width: 450px) {
+    height: ${(props) => (props.$isBig ? "1200px" : "")};
+  }
 `;
 
 const ImageDiv = styled(Link)<{ $display?: boolean; $isBig?: boolean }>`
@@ -75,16 +84,18 @@ const Presentation = styled.div<{ $display?: boolean; $isBig?: boolean }>`
   width: ${(props) => (props.$isBig ? "100%" : "72%")};
   height: ${(props) => (props.$isBig ? "70%" : "100%")};
   top: ${(props) => (props.$isBig ? "30%" : "")};
+  align-self: ${(props) => (props.$display ? "end" : "")};
   padding: 28px;
   border: 1px white solid;
   border-radius: 24px;
   display: flex;
   align-items: ${(props) => (props.$isBig ? "center" : "")};
+  justify-content: space-between;
   flex-direction: column;
   @media (max-width: 600px) {
     width: 100%;
-    height: 52%;
-    top: auto;
+    height: 70%;
+    top: 29%;
     bottom: 0;
     padding: 1em;
   }
@@ -126,7 +137,7 @@ const LinkInfo = styled.div<{ $display?: boolean }>`
 
 const Github = styled(Link)<{ $display?: boolean; $isBig?: boolean }>`
   width: 220px;
-  height: 48px;
+  height: 42px;
   background: white;
   color: black;
   border-radius: 12px;
@@ -149,10 +160,6 @@ const Github = styled(Link)<{ $display?: boolean; $isBig?: boolean }>`
     }
   }
   @media (max-width: 600px) {
-    bottom: 70px;
-    right: 50%;
-    left: 50%;
-    transform: translate(-50%, -0);
   }
 `;
 
@@ -161,7 +168,7 @@ const ReadMore = styled.button<{ $isBig?: boolean; $display?: boolean }>`
   font-weight: inherit;
   font-size: inherit;
   width: 160px;
-  height: 48px;
+  height: 42px;
   background: transparent;
   color: white;
   border-radius: 12px;
@@ -172,10 +179,6 @@ const ReadMore = styled.button<{ $isBig?: boolean; $display?: boolean }>`
   transition: all 0.2s ease-in-out;
   cursor: pointer;
   @media (max-width: 600px) {
-    bottom: 10px;
-    right: 50%;
-    left: 50%;
-    transform: translate(-50%, -0);
   }
   .plus {
     margin-left: 0.6em;
@@ -190,8 +193,13 @@ const NavCard = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-top: 2em;
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
+
+const ContentSection = styled.div``;
 
 const Title = styled.h1<{ $isBig?: boolean }>`
   font-size: 2.2em;
@@ -252,11 +260,13 @@ export default function ProjectCard({
         </LinkInfo>
       </ImageDiv>
       <Presentation $isBig={isBig} $display={odd}>
-        <Title $isBig={isBig}>{title}</Title>
-        <Text>{text}</Text>
+        <ContentSection>
+          <Title $isBig={isBig}>{title}</Title>
+          <Text>{text}</Text>
+          {isBig && <Development>{development}</Development>}
+        </ContentSection>
         {isBig && (
           <>
-            <Development>{development}</Development>
             <IntroTechno>Développer à l&apos;aide de :</IntroTechno>
             <Technologies>
               {technos.map((techno, id) => (
