@@ -58,12 +58,16 @@ const ImageDiv = styled(Link)<{ $display?: boolean; $isBig?: boolean }>`
   border-radius: 20px;
   overflow: hidden;
   &:hover {
-    width: ${(props) => (props.$isBig ? "100%" : "33%")};
-    height: ${(props) => (props.$isBig ? "34%" : "95%")};
+    width: ${(props) => (props.$isBig ? "100%" : "30%")};
+    height: ${(props) => (props.$isBig ? "32%" : "90%")};
     cursor: pointer;
     .linkInfo {
       right: ${(props) => (props.$display ? "" : "0px")};
       left: ${(props) => (props.$display ? "0px" : "")};
+    }
+    img {
+      width: 120%;
+      height: 120%;
     }
   }
 
@@ -102,10 +106,16 @@ const Presentation = styled.div<{ $display?: boolean; $isBig?: boolean }>`
 `;
 
 const ProjectPic = styled(Image)`
+  position: absolute;
+
   width: 100%;
   height: 100%;
   transition: all 0.2s ease-in-out;
   object-fit: cover;
+  object-position: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 const LinkInfo = styled.div<{ $display?: boolean }>`
