@@ -2,22 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import styled, { keyframes } from "styled-components";
-
-const SkillsList = [
-  "Next.js",
-  "React",
-  "Node.js",
-  "TypeScript",
-  "Javascript",
-  "CSS",
-  "Sass",
-  "Tailwind",
-  "StyledComponents",
-  "PHP",
-  "GIT",
-  "Rest API",
-  "SQL",
-];
+import { SkillsList } from "@/libs/datas/about";
 
 const BackgroundMotion = keyframes`
     0% {
@@ -30,6 +15,7 @@ const BackgroundMotion = keyframes`
 
 const Main = styled.section`
   width: 80%;
+  max-width: 1150px;
   margin: auto;
   display: flex;
   justify-content: center;
@@ -55,6 +41,7 @@ const Title = styled.h1`
 `;
 
 const SkillsTitle = styled.h2`
+  align-self: center;
   font-family: ${(props) => props.theme.fonts.bold};
   font-size: 2em;
   margin-top: 1em;
@@ -63,8 +50,12 @@ const SkillsTitle = styled.h2`
 
 const Skills = styled.div`
   display: flex;
+  align-self: center;
+  max-width: 800px;
+  display: flex;
   align-items: center;
   flex-wrap: wrap;
+  justify-content: center;
 `;
 
 const Container = styled.div`
@@ -72,15 +63,17 @@ const Container = styled.div`
   max-width: 1200px;
   margin: auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   @media (max-width: 900px) {
     flex-direction: column;
   }
 `;
 
 const Picture = styled.div`
-  width: 25vw;
-  height: 25vw;
+  width: 26vw;
+  height: 26vw;
+  max-width: 350px;
+  max-height: 350px;
   margin-right: 2em;
   @media (max-width: 900px) {
     align-self: center;
@@ -89,6 +82,11 @@ const Picture = styled.div`
     height: 60vw;
     max-width: 300px;
     max-height: 300px;
+    margin-right: 0;
+  }
+  @media (max-width: 500px) {
+    width: 90vw;
+    height: 90vw;
   }
 `;
 
@@ -144,6 +142,19 @@ const CV = styled(Link)`
   }
 `;
 
+const SkillSections = styled.div`
+  display: flex;
+  flex-raw: raw;
+  justify-content: center;
+  margin-bottom: 1em;
+`;
+const SkillSection = styled.div`
+  border: 1px solid white;
+  border-radius: 12px;
+  padding: 0.5em;
+  margin-right: 0.5em;
+`;
+
 export default function About() {
   return (
     <Main>
@@ -169,14 +180,19 @@ export default function About() {
           ce qui m'a permis de développer une excellente capacité à travailler
           en équipe et à communiquer efficacement, tant en français qu'en
           anglais.
-          <SkillsTitle>Compétences</SkillsTitle>
-          <Skills>
-            {SkillsList.map((skill) => (
-              <Skill key={skill}>{skill}</Skill>
-            ))}
-          </Skills>
         </Content>
       </Container>
+      <SkillsTitle>Compétences</SkillsTitle>
+      <SkillSections>
+        <SkillSection>Front</SkillSection>
+        <SkillSection>Back</SkillSection>
+        <SkillSection>OPS</SkillSection>
+      </SkillSections>
+      <Skills>
+        {SkillsList.map((skill, id) => (
+          <Skill key={id}>{skill.name}</Skill>
+        ))}
+      </Skills>
       <CV
         href="/CVJolanPoussier.pdf"
         target="_blank"

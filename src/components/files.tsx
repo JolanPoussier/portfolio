@@ -18,7 +18,7 @@ const File = styled(Image)`
   position: relative;
 `;
 
-const Block = styled(motion(Link))`
+const Block = styled(motion.create(Link))`
   display: flex;
   width: 44px;
   height: 44px;
