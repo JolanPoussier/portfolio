@@ -5,13 +5,14 @@ import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 const projectAnim = {
-  hidden: { opacity: 0, scale: 0.3, x: -500 },
-  hiddenOdd: { opacity: 0, scale: 0.3, x: 500 },
+  hidden: { opacity: 0, scale: 0.3, x: -900 },
+  hiddenOdd: { opacity: 0, scale: 0.3, x: 900 },
   reveal: { opacity: 1, scale: 1, x: 0 },
 };
 
 const ProjectGrid = styled.div`
   width: 80%;
+  display: block;
   margin: auto;
   min-height: 100vh;
 
@@ -39,15 +40,13 @@ const Title = styled.h1`
 export default function Projects() {
   const ref = useRef(null);
   const [projectsVisibility, setProjectsVisibility] = useState(false);
-  const isInView = useInView(ref, {
-    amount: "all",
-  });
+  const isInView = useInView(ref);
   useEffect(() => {
     isInView ? setProjectsVisibility(true) : "";
   }, [isInView]);
   return (
-    <ProjectGrid>
-      <Title ref={ref}>Découvrez mes projets</Title>
+    <ProjectGrid ref={ref}>
+      <Title>Découvrez mes projets</Title>
       {projects.map((project, key) => {
         return (
           <motion.div
@@ -56,7 +55,7 @@ export default function Projects() {
             animate={projectsVisibility ? "reveal" : ""}
             transition={{
               duration: 1,
-              delay: key * 0.4,
+              delay: 0.3 + key * 0.4,
             }}
             variants={projectAnim}
           >
