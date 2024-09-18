@@ -9,10 +9,6 @@ export const SkillsList = <Skill[]>[
     section: "front",
   },
   {
-    name: "Next.js",
-    section: "front",
-  },
-  {
     name: "React.js",
     section: "front",
   },
@@ -41,11 +37,11 @@ export const SkillsList = <Skill[]>[
     section: "front",
   },
   {
-    name: "Tailwind",
+    name: "StyledComponents",
     section: "front",
   },
   {
-    name: "StyledComponents",
+    name: "Redux",
     section: "front",
   },
   {
@@ -54,7 +50,7 @@ export const SkillsList = <Skill[]>[
   },
   {
     name: "GIT",
-    section: "OPS",
+    section: "ops",
   },
   {
     name: "RestAPI",
@@ -70,7 +66,7 @@ export const SkillsList = <Skill[]>[
   },
   {
     name: "Vercel",
-    section: "OPS",
+    section: "ops",
   },
   {
     name: "Laravel",
@@ -78,7 +74,7 @@ export const SkillsList = <Skill[]>[
   },
   {
     name: "GitHub",
-    section: "OPS",
+    section: "ops",
   },
   {
     name: "Playwright",
@@ -90,6 +86,6 @@ export const SkillsList = <Skill[]>[
   },
   {
     name: "Github Actions",
-    section: "OPS",
+    section: "ops",
   },
 ];

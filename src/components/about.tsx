@@ -1,8 +1,10 @@
+/* eslint-disable indent */
 /* eslint-disable react/no-unescaped-entities */
 import Image from "next/image";
 import Link from "next/link";
 import styled, { keyframes } from "styled-components";
 import { SkillsList } from "@/libs/datas/about";
+import { useEffect, useState } from "react";
 
 const BackgroundMotion = keyframes`
     0% {
@@ -116,10 +118,10 @@ const Skill = styled.div`
   border-radius: 12px;
   padding: 0.5em;
   margin: 0 0.5em 0.5em 0;
-  background: linear-gradient(65deg, #1f2663 25%, #090a16 35%);
-  background-size: 450% auto;
 
-  animation: ${BackgroundMotion} 5s ease-in-out infinite alternate;
+  // background: linear-gradient(65deg, #1f2663 25%, #090a16 35%);
+  // background-size: 450% auto;
+  // animation: ${BackgroundMotion} 5s ease-in-out infinite alternate;
 `;
 
 const CV = styled(Link)`
@@ -148,14 +150,97 @@ const SkillSections = styled.div`
   justify-content: center;
   margin-bottom: 1em;
 `;
-const SkillSection = styled.div`
-  border: 1px solid white;
-  border-radius: 12px;
-  padding: 0.5em;
-  margin-right: 0.5em;
+const SkillSection = styled.button<{ $isOpen: boolean }>`
+  border: none;
+  font-size: inherit;
+  cursor: pointer;
+  width: 65px;
+  height: 65px;
+  margin: 0 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-family: ${(props) => props.theme.fonts.bold};
+  background: linear-gradient(to right, #5890ff, #92fffa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  &::after {
+    z-index: -1;
+    position: absolute;
+    content: "";
+    padding: 1.9em;
+    border-radius: 50px;
+    background-color: ${(props) => (props.$isOpen ? "black" : "white")};
+    border: 1px solid white;
+    transition: 0.3s;
+  }
+  &:hover {
+    &::after {
+      background-color: transparent;
+      border: 1px solid white;
+    }
+  }
+  &:active {
+    font-size: 0.95em;
+    transition: all 0.2s;
+    &::after {
+      padding: 1.7em;
+      border: 4px solid white;
+    }
+  }
 `;
 
 export default function About() {
+  type SkillSectionKey = "front" | "back" | "ops";
+
+  const [skillSection, setSkillSection] = useState<
+    Record<SkillSectionKey, boolean>
+  >({
+    front: false,
+    back: false,
+    ops: false,
+  });
+  const [skills, setSkills] = useState(SkillsList);
+  const [skillSectionClicked, setSkillSectionClicked] = useState(false);
+
+  const onClickHandler = (section: SkillSectionKey) => {
+    if (skillSectionClicked) {
+      setSkillSection({ ...skillSection, [section]: !skillSection[section] });
+    } else {
+      setSkillSectionClicked(true);
+    }
+  };
+
+  const onMouseEnterHandler = (section: SkillSectionKey) => {
+    if (skillSection[section]) {
+      setSkillSectionClicked(true);
+      return;
+    }
+    setSkillSection({ ...skillSection, [section]: !skillSection[section] });
+  };
+
+  const onMouseLeaveHandler = (section: SkillSectionKey) => {
+    if (skillSectionClicked) {
+      setSkillSectionClicked(false);
+      return;
+    }
+    setSkillSection({ ...skillSection, [section]: !skillSection[section] });
+  };
+
+  useEffect(() => {
+    if (
+      Object.values(skillSection).every((value) => value === true) ||
+      Object.values(skillSection).every((value) => value === false)
+    ) {
+      setSkills(SkillsList);
+      return;
+    }
+    const newSkillArray = SkillsList.filter(
+      (skills) => skillSection[skills.section as SkillSectionKey]
+    );
+    setSkills(newSkillArray);
+  }, [skillSection]);
   return (
     <Main>
       <Title>A Propos de moi</Title>
@@ -184,12 +269,33 @@ export default function About() {
       </Container>
       <SkillsTitle>Compétences</SkillsTitle>
       <SkillSections>
-        <SkillSection>Front</SkillSection>
-        <SkillSection>Back</SkillSection>
-        <SkillSection>OPS</SkillSection>
+        <SkillSection
+          onClick={() => onClickHandler("front")}
+          onMouseEnter={() => onMouseEnterHandler("front")}
+          onMouseLeave={() => onMouseLeaveHandler("front")}
+          $isOpen={skillSection.front}
+        >
+          Front
+        </SkillSection>
+        <SkillSection
+          onClick={() => onClickHandler("back")}
+          onMouseEnter={() => onMouseEnterHandler("back")}
+          onMouseLeave={() => onMouseLeaveHandler("back")}
+          $isOpen={skillSection.back}
+        >
+          Back
+        </SkillSection>
+        <SkillSection
+          onClick={() => onClickHandler("ops")}
+          onMouseEnter={() => onMouseEnterHandler("ops")}
+          onMouseLeave={() => onMouseLeaveHandler("ops")}
+          $isOpen={skillSection.ops}
+        >
+          OPS
+        </SkillSection>
       </SkillSections>
       <Skills>
-        {SkillsList.map((skill, id) => (
+        {skills.map((skill, id) => (
           <Skill key={id}>{skill.name}</Skill>
         ))}
       </Skills>
