@@ -5,6 +5,7 @@ import Link from "next/link";
 import styled, { keyframes } from "styled-components";
 import { SkillsList } from "@/libs/datas/about";
 import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 const BackgroundMotion = keyframes`
     0% {
@@ -14,6 +15,16 @@ const BackgroundMotion = keyframes`
         background-position: 100% 50%;
     }
 `;
+
+const charVariants = {
+  show: { opacity: 1, scale: 1, padding: 8, x: 0 },
+  hidden: {
+    opacity: 0,
+    scale: 0,
+    padding: 0,
+    x: -50,
+  },
+};
 
 const Main = styled.section`
   width: 80%;
@@ -50,14 +61,26 @@ const SkillsTitle = styled.h2`
   margin-bottom: 1em;
 `;
 
-const Skills = styled.div`
+const Skills = styled(motion.div)`
   display: flex;
   align-self: center;
-  max-width: 800px;
+  width: 800px;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   justify-content: center;
+`;
+
+const Skill = styled(motion.div)`
+  border: 1px solid white;
+  border-radius: 12px;
+  padding: 8px;
+  margin: 0 0.5em 0.5em 0;
+  content: "";
+
+  // background: linear-gradient(65deg, #1f2663 25%, #090a16 35%);
+  // background-size: 450% auto;
+  // animation: ${BackgroundMotion} 5s ease-in-out infinite alternate;
 `;
 
 const Container = styled.div`
@@ -111,17 +134,6 @@ const Content = styled.div`
   @media (max-width: 900px) {
     width: 100%;
   }
-`;
-
-const Skill = styled.div`
-  border: 1px solid white;
-  border-radius: 12px;
-  padding: 0.5em;
-  margin: 0 0.5em 0.5em 0;
-
-  // background: linear-gradient(65deg, #1f2663 25%, #090a16 35%);
-  // background-size: 450% auto;
-  // animation: ${BackgroundMotion} 5s ease-in-out infinite alternate;
 `;
 
 const CV = styled(Link)`
@@ -295,9 +307,21 @@ export default function About() {
         </SkillSection>
       </SkillSections>
       <Skills>
-        {skills.map((skill, id) => (
-          <Skill key={id}>{skill.name}</Skill>
-        ))}
+        <AnimatePresence>
+          {skills.map((skill, id) => (
+            <Skill
+              layout
+              initial="hidden"
+              animate="show"
+              exit="hidden"
+              transition={{ duration: 0.4 }}
+              variants={charVariants}
+              key={id}
+            >
+              {skill.name}
+            </Skill>
+          ))}
+        </AnimatePresence>
       </Skills>
       <CV
         href="/CVJolanPoussier.pdf"
