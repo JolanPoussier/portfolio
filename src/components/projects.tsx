@@ -1,9 +1,18 @@
 import { projects } from "@/libs/datas/projects";
 import ProjectCard from "./projectCard";
 import styled from "styled-components";
+import { motion, useInView } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+
+const projectAnim = {
+  hidden: { opacity: 0, scale: 0.3, x: -900 },
+  hiddenOdd: { opacity: 0, scale: 0.3, x: 900 },
+  reveal: { opacity: 1, scale: 1, x: 0 },
+};
 
 const ProjectGrid = styled.div`
   width: 80%;
+  display: block;
   margin: auto;
   min-height: 100vh;
 
@@ -29,11 +38,30 @@ const Title = styled.h1`
 `;
 
 export default function Projects() {
+  const ref = useRef(null);
+  const [projectsVisibility, setProjectsVisibility] = useState(false);
+  const isInView = useInView(ref);
+  useEffect(() => {
+    isInView ? setProjectsVisibility(true) : "";
+  }, [isInView]);
   return (
-    <ProjectGrid>
-      <Title>Projets</Title>
+    <ProjectGrid ref={ref}>
+      <Title>Découvrez mes projets</Title>
       {projects.map((project, key) => {
-        return <ProjectCard key={key} {...project} odd={key % 2 == 0} />;
+        return (
+          <motion.div
+            key={key}
+            initial={key % 2 === 0 ? "hiddenOdd" : "hidden"}
+            animate={projectsVisibility ? "reveal" : ""}
+            transition={{
+              duration: 1,
+              delay: 0.3 + key * 0.4,
+            }}
+            variants={projectAnim}
+          >
+            <ProjectCard {...project} odd={key % 2 == 0} />
+          </motion.div>
+        );
       })}
     </ProjectGrid>
   );

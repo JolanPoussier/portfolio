@@ -1,6 +1,7 @@
 "use client";
 
 import About from "@/components/about";
+import Background from "@/components/background";
 import Contact from "@/components/contact";
 import Footer from "@/components/footer";
 import Home from "@/components/home";
@@ -49,6 +50,12 @@ export default function App() {
           aboutVisible,
           contactVisible
         )}
+      />
+      <Background
+        homeRef={homeVisible}
+        projectRef={projectsVisible}
+        aboutRef={aboutVisible}
+        contactRef={contactVisible}
       />
       <Main>
         <Section ref={home} id="home">
