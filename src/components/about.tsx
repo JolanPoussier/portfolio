@@ -121,6 +121,7 @@ const Me = styled(Image)`
   aspect-ratio: 1/1;
   border-radius: 12px;
   overflow: hidden;
+  object-fit: cover;
 `;
 
 const Content = styled.div`
@@ -258,7 +259,7 @@ export default function About() {
       <Title>A Propos de moi</Title>
       <Container>
         <Picture>
-          <Me src={"/assets/photoSwag.png"} alt="me" width={500} height={500} />
+          <Me src={"/assets/photoSwag.png"} alt="me" width={450} height={600} />
         </Picture>
         <Content>
           Je m'appelle Jolan Poussier, et je suis passionné par le domaine du
