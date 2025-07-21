@@ -64,7 +64,7 @@ const SkillsTitle = styled.h2`
 const Skills = styled(motion.div)`
   display: flex;
   align-self: center;
-  width: 800px;
+  max-width: 800px;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -158,10 +158,12 @@ const CV = styled(Link)`
 `;
 
 const SkillSections = styled.div`
-  display: flex;
-  flex-raw: raw;
-  justify-content: center;
-  margin-bottom: 1em;
+display: flex;
+flex-raw: raw;
+justify-content: center;
+margin-bottom: 1em;
+@media (max-width: 1024px) {
+display:none
 `;
 const SkillSection = styled.button<{ $isOpen: boolean }>`
   border: none;
