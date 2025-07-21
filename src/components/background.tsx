@@ -7,13 +7,15 @@ const backgroundAnimation = keyframes`
   100%{background-position:0% 50%} 
   `;
 const BackgroundDiv = styled.div`
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
+ position: fixed;
+  inset: 0;
+  min-width: 100vw;
+  min-height: 100vh;
   z-index: -1;
   background: linear-gradient(270deg, #161a40, #090a16, #161a40);
   background-size: 600% 600%;
-
+  will-change: background-position;
+  
   -webkit-animation: ${backgroundAnimation} 10s ease infinite;
   animation: ${backgroundAnimation} 10s ease infinite;
 `;
